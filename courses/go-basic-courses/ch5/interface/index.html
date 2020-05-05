@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="接口 接口类型是一种抽象类型，是方法的集合，其他类型实现了这些方法就是实现了这个接口。
+/* 定义接口 */ type interface_name interface { method_name1 [return_type] method_name2 [return_type] method_name3 [return_type] ... method_namen [return_type] } 简单示例：打印不同几何图形的面积和周长 package main import ( &#34;fmt&#34; &#34;math&#34; ) type geometry interface { area() float32 perim() float32 } type rect struct { len, wid float32 } func (r rect) area() float32 { return r.len * r.wid } func (r rect) perim() float32 { return 2 * (r.len &#43; r.wid) } type circle struct { radius float32 } func (c circle) area() float32 { return math.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="接口 接口类型是一种抽象类型，是方法的集合，其他类型实现了这些方法就是实现了这个接口。
+/* 定义接口 */ type interface_name interface { method_name1 [return_type] method_name2 [return_type] method_name3 [return_type] ... method_namen [return_type] } 简单示例：打印不同几何图形的面积和周长 package main import ( &#34;fmt&#34; &#34;math&#34; ) type geometry interface { area() float32 perim() float32 } type rect struct { len, wid float32 } func (r rect) area() float32 { return r.len * r.wid } func (r rect) perim() float32 { return 2 * (r.len &#43; r.wid) } type circle struct { radius float32 } func (c circle) area() float32 { return math." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch5/interface/" />
+
+<title>Interface | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Interface</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#接口">接口</a></li>
+        <li><a href="#接口中可以内嵌接口">接口中可以内嵌接口</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h3 id="接口">接口</h3>
+<p>接口类型是一种抽象类型，是方法的集合，其他类型实现了这些方法就是实现了这个接口。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/* 定义接口 */</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">interface_name</span> <span style="color:#66d9ef">interface</span> {
+   <span style="color:#a6e22e">method_name1</span> [<span style="color:#a6e22e">return_type</span>]
+   <span style="color:#a6e22e">method_name2</span> [<span style="color:#a6e22e">return_type</span>]
+   <span style="color:#a6e22e">method_name3</span> [<span style="color:#a6e22e">return_type</span>]
+   <span style="color:#f92672">...</span>
+   <span style="color:#a6e22e">method_namen</span> [<span style="color:#a6e22e">return_type</span>]
+}
+</code></pre></div><h4 id="简单示例打印不同几何图形的面积和周长">简单示例：打印不同几何图形的面积和周长</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;math&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">geometry</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">area</span>() <span style="color:#66d9ef">float32</span>
+	<span style="color:#a6e22e">perim</span>() <span style="color:#66d9ef">float32</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">rect</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">len</span>, <span style="color:#a6e22e">wid</span> <span style="color:#66d9ef">float32</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#a6e22e">rect</span>) <span style="color:#a6e22e">area</span>() <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">len</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">wid</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">r</span> <span style="color:#a6e22e">rect</span>) <span style="color:#a6e22e">perim</span>() <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (<span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">len</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">wid</span>)
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">circle</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">radius</span> <span style="color:#66d9ef">float32</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#a6e22e">circle</span>) <span style="color:#a6e22e">area</span>() <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pi</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#a6e22e">circle</span>) <span style="color:#a6e22e">perim</span>() <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pi</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">radius</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">param</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">param</span>.(<span style="color:#66d9ef">type</span>) {
+	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">geometry</span>:
+		<span style="color:#75715e">// 类型断言
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;area of %v is %v \n&#34;</span>, <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">param</span>.(<span style="color:#a6e22e">geometry</span>).<span style="color:#a6e22e">area</span>())
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;perim of %v is %v \n&#34;</span>, <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">param</span>.(<span style="color:#a6e22e">geometry</span>).<span style="color:#a6e22e">perim</span>())
+	<span style="color:#66d9ef">default</span>:
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;wrong type!&#34;</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">rec</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rect</span>{
+		<span style="color:#a6e22e">len</span>: <span style="color:#ae81ff">1</span>,
+		<span style="color:#a6e22e">wid</span>: <span style="color:#ae81ff">2</span>,
+	}
+	<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;rect&#34;</span>, <span style="color:#a6e22e">rec</span>)
+
+	<span style="color:#a6e22e">cir</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">circle</span>{
+		<span style="color:#a6e22e">radius</span>: <span style="color:#ae81ff">1</span>,
+	}
+	<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;circle&#34;</span>, <span style="color:#a6e22e">cir</span>)
+
+	<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#e6db74">&#34;test param&#34;</span>)
+}
+</code></pre></div><h3 id="接口中可以内嵌接口">接口中可以内嵌接口</h3>
+<p>对上述例子做以下修改：</p>
+<ul>
+<li>首先添加 <code>tmp</code> 接口，该接口定义了 <code>area()</code> 方法</li>
+<li>将 <code>tmp</code> 作为 <code>geometry</code> 接口中的匿名成员，并且将 <code>geometry</code> 接口中原本定义的 <code>area()</code> 方法删除</li>
+</ul>
+<blockquote>
+<p>完成以上两步后，<code>geometry</code> 接口将会拥有 <code>tmp</code> 接口所定义的所有方法。运行结果和上述例子相同。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">tmp</span> <span style="color:#66d9ef">interface</span>{
+	<span style="color:#a6e22e">area</span>() <span style="color:#66d9ef">float32</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">geometry</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#75715e">// area() float32
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">tmp</span>
+	<span style="color:#a6e22e">perim</span>() <span style="color:#66d9ef">float32</span>
+}
+</code></pre></div></article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#接口">接口</a></li>
+        <li><a href="#接口中可以内嵌接口">接口中可以内嵌接口</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

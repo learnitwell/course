@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="现在市面上有很多形如《xxx 实战教程》、《xxx 案例开发大全》之类的开发书籍，关于书的内容质量怎么样我就不多说了，呵呵一句你们就会懂的。我个人还是比较喜欢国外的编程教学类书籍，书中讲解的内容大部分都是比较严谨的，不仅讲实战，也会把原理解释得很清楚。但是国内的教程能做到这样的就很少了。回到正题上来，我们这次讲解的是 weiphp 留言板插件的开发流程，大家都知道，留言板是一门 web 开发技术入门级的案例，学习任何一门 web 开发技术，不管是 java、php 还是 python、ruby 之类的，要是能够写出一个留言板的实例来，那么就可以证明你算是入门了。所以我们今天就开始通过一个留言板的实例来入门 weiphp 插件开发。
+在开发此插件前，我们先来看一下这个插件的效果图，这里给大家分享一个我用 bootstrap 写的比较简单的留言板界面，一共两个页面：留言列表页面和发布留言页面，大家可以在我的百度云上面下载这个前台模板：http://pan.baidu.com/s/1sjFgsVF
+留言列表页面
+发布留言页面
+看到前台效果图，我们大概知道这个插件做好之后是怎么样了，这个插件相对来说比较简单，需要用到 weiphp 插件模板、数据模型等。
+下面我们开始一步一步来完成这个插件：
+1、创建插件。在 weiphp 管理后台中创建留言板插件，把下面的安装后是否立即启用、是否需要配置、是否需要管理列表全部勾上（如果需要进行数据库操作，并且插件用到的数据库只有一个表时就勾上需要管理列表，这时候在插件管理后台就会出现数据管理列表，列表里面的内容默认会调用与插件标识名一致的数据模型进行显示，也就是说如果我们把是否需要管理列表这个选项勾上了，那么我们在创建数据模型的时候需要把数据模型命名为 Liuyanban，这样的话我们就不需要对数据模型显示的方法进行重载即可调用 weiphp 默认的方法进行数据显示与管理，如果我们的模型名与插件标识名不一致的话，那么我们需要改写数据管理控制器，这个后面会讲到。）
+2、安装插件。
+3、查看插件是否安装成功。在插件管理后台可以看到留言板插件已经成功安装了，因为勾选了需要配置和需要管理列表，所以这个地方能看到配置页面和数据管理页面，因为数据模型和数据列表还没有定义，所以数据管理页面并没有显示每个字段标题。
+4、创建数据模型。在 weiphp 管理后台依次点击“系统-&gt;模型管理-&gt;新增”，进入数据模型创建页面，并创建 Liuyanban 数据模型。
+5、创建字段。在模型列表里面找到上一步创建好的 Liuyanban 数据模型，并点字段管理进入字段管理页面。
+点击新增依次建立如下字段。
+6、定义数据列表。在模型列表页面再次找到 liuyanban 模型，点击编辑进入模型编辑页面；
+在模型编辑页面点击设计进入列表定义页面；
+按下图所示进行列表定义。
+7、查看数据列表。再次回到插件管理后台，可以看到列表定义的字段已经显示出来。
+8、编辑配置文件。改写 config.php，添加下图所示配置项。
+回到插件管理后台，可以看到配置项成功应用。
+上传一张封面图片并点“确定”提交配置项。
+9、编写微信交互模型。在微信模型中设置当用户输入“留言板”触发此插件时回复单图文消息，跳转到留言列表页面（Liuyanban 控制器下的 index 方法），并传递用户的 openid 和公众号的 token 两个参数。其中 get_token()、get_openid()、addons_url()、get_cover_url()为 weiphp 封装的较为常用的方法，可以在 Application/Common/Common/function.php 中查看这些方法对应的用法和功能。
+10、显示前台模板。在 Liuyanban 控制器中新建 index()和 liuyan()两个方法，分别用于显示留言列表页面和发布留言页面。
+下载前台模板文件http://pan.baidu.com/s/1sjFgsVF，并把文件粘贴至 Liuyanban 插件的模板文件夹下面。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="留言板插件：Liuyanban" />
+<meta property="og:description" content="现在市面上有很多形如《xxx 实战教程》、《xxx 案例开发大全》之类的开发书籍，关于书的内容质量怎么样我就不多说了，呵呵一句你们就会懂的。我个人还是比较喜欢国外的编程教学类书籍，书中讲解的内容大部分都是比较严谨的，不仅讲实战，也会把原理解释得很清楚。但是国内的教程能做到这样的就很少了。回到正题上来，我们这次讲解的是 weiphp 留言板插件的开发流程，大家都知道，留言板是一门 web 开发技术入门级的案例，学习任何一门 web 开发技术，不管是 java、php 还是 python、ruby 之类的，要是能够写出一个留言板的实例来，那么就可以证明你算是入门了。所以我们今天就开始通过一个留言板的实例来入门 weiphp 插件开发。
+在开发此插件前，我们先来看一下这个插件的效果图，这里给大家分享一个我用 bootstrap 写的比较简单的留言板界面，一共两个页面：留言列表页面和发布留言页面，大家可以在我的百度云上面下载这个前台模板：http://pan.baidu.com/s/1sjFgsVF
+留言列表页面
+发布留言页面
+看到前台效果图，我们大概知道这个插件做好之后是怎么样了，这个插件相对来说比较简单，需要用到 weiphp 插件模板、数据模型等。
+下面我们开始一步一步来完成这个插件：
+1、创建插件。在 weiphp 管理后台中创建留言板插件，把下面的安装后是否立即启用、是否需要配置、是否需要管理列表全部勾上（如果需要进行数据库操作，并且插件用到的数据库只有一个表时就勾上需要管理列表，这时候在插件管理后台就会出现数据管理列表，列表里面的内容默认会调用与插件标识名一致的数据模型进行显示，也就是说如果我们把是否需要管理列表这个选项勾上了，那么我们在创建数据模型的时候需要把数据模型命名为 Liuyanban，这样的话我们就不需要对数据模型显示的方法进行重载即可调用 weiphp 默认的方法进行数据显示与管理，如果我们的模型名与插件标识名不一致的话，那么我们需要改写数据管理控制器，这个后面会讲到。）
+2、安装插件。
+3、查看插件是否安装成功。在插件管理后台可以看到留言板插件已经成功安装了，因为勾选了需要配置和需要管理列表，所以这个地方能看到配置页面和数据管理页面，因为数据模型和数据列表还没有定义，所以数据管理页面并没有显示每个字段标题。
+4、创建数据模型。在 weiphp 管理后台依次点击“系统-&gt;模型管理-&gt;新增”，进入数据模型创建页面，并创建 Liuyanban 数据模型。
+5、创建字段。在模型列表里面找到上一步创建好的 Liuyanban 数据模型，并点字段管理进入字段管理页面。
+点击新增依次建立如下字段。
+6、定义数据列表。在模型列表页面再次找到 liuyanban 模型，点击编辑进入模型编辑页面；
+在模型编辑页面点击设计进入列表定义页面；
+按下图所示进行列表定义。
+7、查看数据列表。再次回到插件管理后台，可以看到列表定义的字段已经显示出来。
+8、编辑配置文件。改写 config.php，添加下图所示配置项。
+回到插件管理后台，可以看到配置项成功应用。
+上传一张封面图片并点“确定”提交配置项。
+9、编写微信交互模型。在微信模型中设置当用户输入“留言板”触发此插件时回复单图文消息，跳转到留言列表页面（Liuyanban 控制器下的 index 方法），并传递用户的 openid 和公众号的 token 两个参数。其中 get_token()、get_openid()、addons_url()、get_cover_url()为 weiphp 封装的较为常用的方法，可以在 Application/Common/Common/function.php 中查看这些方法对应的用法和功能。
+10、显示前台模板。在 Liuyanban 控制器中新建 index()和 liuyan()两个方法，分别用于显示留言列表页面和发布留言页面。
+下载前台模板文件http://pan.baidu.com/s/1sjFgsVF，并把文件粘贴至 Liuyanban 插件的模板文件夹下面。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/weiphp-dev/vol3/" />
+<meta property="article:published_time" content="2015-01-10T00:53:26+00:00" />
+<meta property="article:modified_time" content="2015-01-10T00:53:26+00:00" />
+<title>留言板插件：Liuyanban | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li><a href="/courses/weiphp-dev/vol1.md">第一个自定义 weiphp 插件：MyHello</a></li>
+<li><a href="/courses/weiphp-dev/vol2.md">成语接龙插件：Idioms</a></li>
+<li><a href="/courses/weiphp-dev/vol3.md">留言板插件：Liuyanban</a></li>
+<li><a href="/courses/weiphp-dev/vol4.md">签到插件：QianDao</a></li>
+<li><a href="/courses/weiphp-dev/vol5.md">网页采集技术在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol6.md">微信高级客服接口在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol7.md">模拟请求技术在 weiphp 插件中的应用</a></li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>留言板插件：Liuyanban</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents"></nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    分分钟上手「WeiPHP」插件开发
+</div>
+
+      
+<article class="markdown"><p>现在市面上有很多形如《xxx 实战教程》、《xxx 案例开发大全》之类的开发书籍，关于书的内容质量怎么样我就不多说了，呵呵一句你们就会懂的。我个人还是比较喜欢国外的编程教学类书籍，书中讲解的内容大部分都是比较严谨的，不仅讲实战，也会把原理解释得很清楚。但是国内的教程能做到这样的就很少了。回到正题上来，我们这次讲解的是 weiphp 留言板插件的开发流程，大家都知道，留言板是一门 web 开发技术入门级的案例，学习任何一门 web 开发技术，不管是 java、php 还是 python、ruby 之类的，要是能够写出一个留言板的实例来，那么就可以证明你算是入门了。所以我们今天就开始通过一个留言板的实例来入门 weiphp 插件开发。</p>
+<p>在开发此插件前，我们先来看一下这个插件的效果图，这里给大家分享一个我用 bootstrap 写的比较简单的留言板界面，一共两个页面：留言列表页面和发布留言页面，大家可以在我的百度云上面下载这个前台模板：<a href="http://pan.baidu.com/s/1sjFgsVF">http://pan.baidu.com/s/1sjFgsVF</a></p>
+<p>留言列表页面</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/0.1.png" alt="" /></p>
+<p>发布留言页面</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/0.2.png" alt="" /></p>
+<p>看到前台效果图，我们大概知道这个插件做好之后是怎么样了，这个插件相对来说比较简单，需要用到 weiphp 插件模板、数据模型等。</p>
+<p>下面我们开始一步一步来完成这个插件：</p>
+<p>1、创建插件。在 weiphp 管理后台中创建留言板插件，把下面的安装后是否立即启用、是否需要配置、是否需要管理列表全部勾上（如果需要进行数据库操作，并且插件用到的数据库只有一个表时就勾上需要管理列表，这时候在插件管理后台就会出现数据管理列表，列表里面的内容默认会调用与插件标识名一致的数据模型进行显示，也就是说如果我们把是否需要管理列表这个选项勾上了，那么我们在创建数据模型的时候需要把数据模型命名为 Liuyanban，这样的话我们就不需要对数据模型显示的方法进行重载即可调用 weiphp 默认的方法进行数据显示与管理，如果我们的模型名与插件标识名不一致的话，那么我们需要改写数据管理控制器，这个后面会讲到。）</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/1.1.png" alt="" /></p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/1.2.png" alt="" /></p>
+<p>2、安装插件。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/23.png" alt="" /></p>
+<p>3、查看插件是否安装成功。在插件管理后台可以看到留言板插件已经成功安装了，因为勾选了需要配置和需要管理列表，所以这个地方能看到配置页面和数据管理页面，因为数据模型和数据列表还没有定义，所以数据管理页面并没有显示每个字段标题。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/34.png" alt="" /></p>
+<p>4、创建数据模型。在 weiphp 管理后台依次点击“系统-&gt;模型管理-&gt;新增”，进入数据模型创建页面，并创建 Liuyanban 数据模型。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/42.png" alt="" /></p>
+<p>5、创建字段。在模型列表里面找到上一步创建好的 Liuyanban 数据模型，并点字段管理进入字段管理页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/53.png" alt="" /></p>
+<p>点击新增依次建立如下字段。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/5.2.png" alt="" /></p>
+<p>6、定义数据列表。在模型列表页面再次找到 liuyanban 模型，点击编辑进入模型编辑页面；</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/6.1.png" alt="" /></p>
+<p>在模型编辑页面点击设计进入列表定义页面；</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/6.2.png" alt="" /></p>
+<p>按下图所示进行列表定义。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/6.3.png" alt="" /></p>
+<p>7、查看数据列表。再次回到插件管理后台，可以看到列表定义的字段已经显示出来。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/72.png" alt="" /></p>
+<p>8、编辑配置文件。改写 config.php，添加下图所示配置项。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/81.png" alt="" /></p>
+<p>回到插件管理后台，可以看到配置项成功应用。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/8.2.png" alt="" /></p>
+<p>上传一张封面图片并点“确定”提交配置项。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/8.3.png" alt="" /></p>
+<p>9、编写微信交互模型。在微信模型中设置当用户输入“留言板”触发此插件时回复单图文消息，跳转到留言列表页面（Liuyanban 控制器下的 index 方法），并传递用户的 openid 和公众号的 token 两个参数。其中 get_token()、get_openid()、addons_url()、get_cover_url()为 weiphp 封装的较为常用的方法，可以在 Application/Common/Common/function.php 中查看这些方法对应的用法和功能。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/91.png" alt="" /></p>
+<p>10、显示前台模板。在 Liuyanban 控制器中新建 index()和 liuyan()两个方法，分别用于显示留言列表页面和发布留言页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/9.1.png" alt="" /></p>
+<p>下载前台模板文件<a href="http://pan.baidu.com/s/1sjFgsVF">http://pan.baidu.com/s/1sjFgsVF</a>，并把文件粘贴至 Liuyanban 插件的模板文件夹下面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/10.2.png" alt="" /></p>
+<p>11、微信调试。在微信中回复“留言板”即可响应此插件回复单图文消息。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.1.png" alt="" /></p>
+<p>点击即可进入留言列表页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.2.png" alt="" /></p>
+<p>打开 index.html，用 U 方法为“写留言”添加跳转链接，使其被点击后跳转到发布留言页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.3.png" alt="" /></p>
+<p>因此在留言列表页中点击“写留言”时会跳转到下图所以发布留言页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.5.png" alt="" /></p>
+<p>打开 liuyan.html，用 U 方法为“看留言”添加跳转链接，使其被点击后跳转到留言列表页面。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.4.png" alt="" /></p>
+<p>经过以上几步完成了两个页面之间的相互跳转。</p>
+<p>12、发布留言。在 liuyan.html 页面中查看 form 表单中的 input 的 name。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/12.1.png" alt="" /></p>
+<p>根据 name 编辑 liuyan 方法，把留言数据插入到数据模型。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/12.2.png" alt="" /></p>
+<p>13、发布留言。在发布留言页面插入几条留言。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/13.1.png" alt="" /></p>
+<p>在插件管理后台可以看到所有用户发布的留言。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/13.2.png" alt="" /></p>
+<p>13、编辑留言。在编辑留言的页面添加管理员回复内容。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/14.1.png" alt="" /></p>
+<p>15、显示留言。编辑 index 方法，取出数据模型中的留言数据并赋值给变量。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/15.1.png" alt="" /></p>
+<p>用 volist 标签循环输出留言数据。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/161.png" alt="" /></p>
+<p>16、查看留言。可以看到所有的留言数据都显示出来，至此本插件开发完毕。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/151.png" alt="" /></p>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents"></nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

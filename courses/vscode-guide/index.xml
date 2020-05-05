@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>「VS Code」快速上手指南 on IT小课</title>
+    <link>http://example.org/courses/vscode-guide/</link>
+    <description>Recent content in 「VS Code」快速上手指南 on IT小课</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/courses/vscode-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>介绍与安装</title>
+      <link>http://example.org/courses/vscode-guide/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/introduction/</guid>
+      <description>VS Code 介绍 VS Code 是微软开发并维护的一款代码编辑器，几乎支持所有主流编程语言的代码高亮、智能提示。具备诸多优良的特性：
+ 轻量级 免费开源 跨平台 丰富的扩展 良好的性能  VS Code 使用  下载地址：https://code.visualstudio.com/ 官方教程：https://code.visualstudio.com/docs  VS Code 安装扩展 下面三种方式都可以进入扩展安装面板：
+ 选择 Code&amp;gt;Preferences&amp;gt;Extensions 使用快捷键 Shift+Command+X（推荐） 使用快捷键 Shift+Command+P 进入命令面板，输入 Extensions: Install Extensions  搜索扩展并进行安装：
+VS Code 自定义代码片段 选择 Code&amp;gt;Preferences&amp;gt;User Snippets 或使用快捷键 Shift+Command+P 进入命令面板，输入 Preferences: Configure User Snippets 进行自定义代码段的管理。
+点击 New Global Snippets file... 新建自定义代码段：
+custom.code-snippets
+{ &amp;#34;Author Info&amp;#34;: { &amp;#34;scope&amp;#34;: &amp;#34;php,go&amp;#34;, &amp;#34;prefix&amp;#34;: &amp;#34;author&amp;#34;, &amp;#34;body&amp;#34;: [&amp;#34;/**&amp;#34;, &amp;#34;* $1&amp;#34;, &amp;#34;* @author 艾逗笔&amp;lt;http://idoubi.</description>
+    </item>
+    
+    <item>
+      <title>快捷键大全</title>
+      <link>http://example.org/courses/vscode-guide/shortcuts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/shortcuts/</guid>
+      <description>Command 键  Command+A 选择全部 Command+B 切换侧边栏 Command+C 复制 Command+D 选择下一个相同的内容 Command+F 文件内查找 Command+I 选择一行 Command+J 切换控制台 Command+N 创建新文件 Command+O 打开文件 Command+P 查找文件 Command+Q 退出编辑器 Command+S 保存文件 Command+V 粘贴 Command+W 关闭编辑器/文件 Command+X 裁剪 Command+Z 撤销 Command+/ 行注释切换 Command+, 打开配置项 Command+] 缩进 Command+[ 退格 Command+enter 下一行编辑 Command+0/1/2/3/4/5/6 分栏窗口  Control 键  Control+A 跳到行首 Control+B 左移一格 Control+D 向右剪切 Control+E 跳到行尾 Control+F 右移一格 Control+G 定位行 Control+H 向左剪切 Control+J 合并下一行 Control+K 删除光标到行尾的内容 Control+N 光标下移一行 Control+P 光标上移一行 Control+Q 切换板面 Control+T 光标处字母移动 Control+W 切换窗口 Control+~ 切换 terminal 控制台 Control+- 倒退 Control+tab 切换 tab  Option 键  Option+↑ 向上移动一行 Option+↓ 向下移动一行 Option+→ 按单词向右移动 Option+← 按单词向左移动 Option+Z 切换换行  Shift+Command 组合键  Shift+Command+F 全局查找 Shift+Command+H 全局替换 Shift+Command+L 选择全部相同的内容 Shift+Command+M 切换 problems 控制台 Shift+Command+N 在新窗口打开并创建新文件 Shift+Command+P 打开命令面板 Shift+Command+S 文件另存为 Shift+Command+U 切换 output 控制器 Shift+Command+X 安装扩展 Shift+Command+Y 切换 debug console 控制台 Shift+Command+Z 重做 Shift+Command+→ 选择光标到行尾的内容 Shift+Command+← 选择光标到行头的内容  Option+Command 组合键  Option+Command+F 文件内替换 Option+Command+S 保存所有文件 Option+Command+0 多栏横屏模式 Option+Command+[ 折叠代码 Option+Command+] 展开代码 Option+Command+↑ 向上添加焦点 Option+Command+↓ 向下添加焦点 Option+Command+→ 下一个编辑窗口 Option+Command+← 上一个编辑窗口  Option+Shift 组合键  Option+Shift+A 块注释切换 Option+Shift+↑ 向上复制一行 Option+Shift+↓ 向下复制一行  Control+Command 组合键  Control+Command+space 表情和符号 Control+Command+F 切换全屏 Control+Command+→ 移到右侧的频幕 Control+Command+← 移到左侧的频幕  Control+Shift 组合键  Control+Shift+G 打开版本控制  其他  Control+Shift+Command+→ 扩大选择 Control+Shift+Command+← 缩小选择 Command+K Command+S 查找快键捷 Command+K Z 切换 Zen 模式 Command+K V 在右边栏预览  </description>
+    </item>
+    
+    <item>
+      <title>配置参数详解</title>
+      <link>http://example.org/courses/vscode-guide/settings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/settings/</guid>
+      <description>配置参数详解 { &amp;#34;editor.fontSize&amp;#34;: 14, // 字体大小 &amp;#34;editor.formatOnSave&amp;#34;: true, // 保存时自动格式化 &amp;#34;files.autoSave&amp;#34;: &amp;#34;onFocusChange&amp;#34;, // 失去焦点时自动保存文件 &amp;#34;breadcrumbs.enabled&amp;#34;: true, // 显示文件路径 &amp;#34;window.zoomLevel&amp;#34;: 0, // 窗口缩放比例 &amp;#34;workbench.statusBar.visible&amp;#34;: true, // 隐藏底部状态栏 &amp;#34;workbench.colorTheme&amp;#34;: &amp;#34;An Old Hope Italic&amp;#34;, // 编辑器主题 &amp;#34;workbench.iconTheme&amp;#34;: &amp;#34;eq-material-theme-icons-ocean&amp;#34;, // 图标主题 &amp;#34;workbench.startupEditor&amp;#34;: &amp;#34;newUntitledFile&amp;#34;, // 编辑器欢迎设置 &amp;#34;explorer.confirmDragAndDrop&amp;#34;: false, // 移动文件时是否需要确认 &amp;#34;explorer.confirmDelete&amp;#34;: false, // 删除文件时是否需要确认 // 优化右侧预览地图样式 &amp;#34;editor.minimap.renderCharacters&amp;#34;: false, &amp;#34;editor.minimap.maxColumn&amp;#34;: 200, &amp;#34;editor.minimap.showSlider&amp;#34;: &amp;#34;always&amp;#34;, // go开发配置 &amp;#34;go.buildOnSave&amp;#34;: &amp;#34;workspace&amp;#34;, &amp;#34;go.lintOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.vetOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.buildFlags&amp;#34;: [], &amp;#34;go.lintFlags&amp;#34;: [], &amp;#34;go.vetFlags&amp;#34;: [], &amp;#34;go.</description>
+    </item>
+    
+    <item>
+      <title>常用扩展推荐</title>
+      <link>http://example.org/courses/vscode-guide/extensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/extensions/</guid>
+      <description>主题样式  An Old Hope Theme   Monokai ST3   Material Theme   vscode-icons VS Code 文件图标扩展插件  功能扩展  Bracket Pair Colorizer：对括号进行成对着色 Code Runner：各种语言写的代码直接运行 GitLens：Git 源码管理插件 Settings Sync：VS Code 配置同步插件 DotENV：.env 文件高亮插件 Vim：VS Code 中使用 Vim 插件 Beautify：代码美化插件 Markdown Preview Enhanced：Markdown 预览插件 Markdown PDF：根据 Markdown 文件导出 PDF 文件插件  </description>
+    </item>
+    
+    <item>
+      <title>打造 PHP 开发环境</title>
+      <link>http://example.org/courses/vscode-guide/php-dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/php-dev/</guid>
+      <description>插件推荐  PHP DocBlocker：PHP 注释插件，在 PHP 代码中输入 /** 快速生成注释。 PHP Intelephense：PHP 智能提示插件，可以完成代码提示、上下文跳转、代码格式化等功能。 php cs fixer：PHP 代码格式化专用插件。 phpcs：PHP 代码格式校验专用插件，此插件依赖 php-cs-fixer 命令行工具，在 macOS 中可以通过 brew install php-cs-fixer 进行安装。 MySQL：MySQL 管理插件。 PHP Debug：PHP 断点调试插件。  相关配置 { &amp;#34;php.validate.executablePath&amp;#34;: &amp;#34;/usr/local/bin/php&amp;#34;, // PHP 路径 &amp;#34;php.suggest.basic&amp;#34;: false // 防止默认提示与 Intelephense 插件提示冲突 } </description>
+    </item>
+    
+    <item>
+      <title>打造 Go 开发环境</title>
+      <link>http://example.org/courses/vscode-guide/go-dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/go-dev/</guid>
+      <description>安装扩展 使用快捷键 Shift+Command+X 打开扩展安装页，安装扩展 Go。
+自定义扩展配置 使用快捷键 Command+, 打开自定义配置页，编辑 settings.json，定义与 Go 扩展相关的配置项。
+{ &amp;#34;editor.formatOnSave&amp;#34;: true, &amp;#34;files.autoSave&amp;#34;: &amp;#34;onFocusChange&amp;#34;, &amp;#34;go.buildOnSave&amp;#34;: &amp;#34;workspace&amp;#34;, &amp;#34;go.lintOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.vetOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.buildFlags&amp;#34;: [], &amp;#34;go.lintFlags&amp;#34;: [], &amp;#34;go.vetFlags&amp;#34;: [], &amp;#34;go.coverOnSave&amp;#34;: false, &amp;#34;go.autocompleteUnimportedPackages&amp;#34;: true, &amp;#34;go.useLanguageServer&amp;#34;: true, &amp;#34;go.inferGopath&amp;#34;: true, &amp;#34;go.docsTool&amp;#34;: &amp;#34;godoc&amp;#34;, &amp;#34;go.gocodePackageLookupMode&amp;#34;: &amp;#34;go&amp;#34;, &amp;#34;go.gotoSymbol.includeImports&amp;#34;: true, &amp;#34;go.useCodeSnippetsOnFunctionSuggest&amp;#34;: true, &amp;#34;go.useCodeSnippetsOnFunctionSuggestWithoutType&amp;#34;: true, &amp;#34;go.formatTool&amp;#34;: &amp;#34;goreturns&amp;#34;, &amp;#34;go.gocodeAutoBuild&amp;#34;: false, &amp;#34;go.liveErrors&amp;#34;: { &amp;#34;enabled&amp;#34;: true, &amp;#34;delay&amp;#34;: 0 }, &amp;#34;go.gopath&amp;#34;: &amp;#34;/data/go&amp;#34;, &amp;#34;go.goroot&amp;#34;: &amp;#34;/usr/local/Cellar/go/1.12.7/libexec&amp;#34; } 安装依赖 第一次编辑完 Go 代码保存的时候，VS Code 会提示需要安装依赖，点击 Install All 进行安装。如果遇到墙的问题，则需要手动安装依赖，需要先下载依赖源码，再进行安装。</description>
+    </item>
+    
+  </channel>
+</rss>

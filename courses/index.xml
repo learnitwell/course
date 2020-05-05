@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IT小课</title>
+    <link>http://example.org/courses/</link>
+    <description>Recent content on IT小课</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 May 2015 23:41:37 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/courses/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

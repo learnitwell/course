@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IT小课</title>
+    <link>http://example.org/</link>
+    <description>Recent content on IT小课</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 May 2015 23:41:37 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>第一个自定义weiphp插件：MyHello</title>
+      <link>http://example.org/courses/weiphp-dev/vol1/</link>
+      <pubDate>Mon, 05 Jan 2015 15:02:54 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol1/</guid>
+      <description>我们都知道，学习任何一门编程语言，一般来说第一个范例程序就是输出“Hello World”。从今天开始我们来学习 weiphp 插件开发，也从一个 HelloWorld 级别的插件开始讲起，因为安装好了的 weiphp 框架，默认安装了 weiphp 官方开发的 HelloWorld 插件，所以这里为了防止跟官方的插件冲突，我们开发的第一个自定义 weiphp 插件取名为 MyHello，并通过这个简单的插件来讲解 weiphp 插件开发的整个流程。整个【分分钟上手 weiphp 插件开发】系列教程都是直接从创建一个新的插件开始讲起的，逐步延生到插件编码、微信响应、数据模型设计等内容，并假定阅读本教程的用户都具有一定的 php 编程基础且已成功搭建好了 weiphp 开发框架，关于如何在服务器上部署 weiphp、weiphp 框架代码结构、weiphp 数据模型等知识请自行参考其他的教程。本系列教程基于的 weiphp 框架版本为 2.0.1202，依赖的服务器为阿里云。
+下面开始讲解第一个自定义 weiphp 插件：MyHello 的开发流程。
+1、插件创建。在 weiphp 管理后台依次点击“插件管理-&amp;gt;创建插件”进入插件创建页面，填写插件的标识名、插件名、版本、作者、描述等信息，勾选“安装后是否启用”、“是否需要配置”两项，点击“确定”完成插件的创建。
+2、插件安装。在插件管理列表中点击“安装”完成插件的安装。
+3、插件管理。返回到 weiphp 管理前台，可以看到 MyHello 插件已经成功安装。
+4、改写配置文件。在 weiphp 的 addons 目录下默认生成的 MyHello 插件文件夹下面改写默认生成的 config.php，添加如下图所示配置项。
+5、查看配置项。可以看到配置文件已经正常响应。
+6、微信响应。为 WeixinAddonModel.class.php 中编写微信响应代码。
+7、编辑配置项。在后台配置页面填写配置信息，上传封面图片，并点“确定”提交配置项。
+8、微信测试。在微信中回复“我的插件”或者“MyHello”时，根据配置项中选择的回复类型是“文本消息”还是“单图文消息”来进行回复。</description>
+    </item>
+    
+    <item>
+      <title>With ToC</title>
+      <link>http://example.org/docs/example/table-of-contents/with-toc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/example/table-of-contents/with-toc/</guid>
+      <description>Caput vino delphine in tamen vias Cognita laeva illo fracta Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
+ Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit  Natus quaerere Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
+    </item>
+    
+    <item>
+      <title>介绍与安装</title>
+      <link>http://example.org/courses/vscode-guide/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/introduction/</guid>
+      <description>VS Code 介绍 VS Code 是微软开发并维护的一款代码编辑器，几乎支持所有主流编程语言的代码高亮、智能提示。具备诸多优良的特性：
+ 轻量级 免费开源 跨平台 丰富的扩展 良好的性能  VS Code 使用  下载地址：https://code.visualstudio.com/ 官方教程：https://code.visualstudio.com/docs  VS Code 安装扩展 下面三种方式都可以进入扩展安装面板：
+ 选择 Code&amp;gt;Preferences&amp;gt;Extensions 使用快捷键 Shift+Command+X（推荐） 使用快捷键 Shift+Command+P 进入命令面板，输入 Extensions: Install Extensions  搜索扩展并进行安装：
+VS Code 自定义代码片段 选择 Code&amp;gt;Preferences&amp;gt;User Snippets 或使用快捷键 Shift+Command+P 进入命令面板，输入 Preferences: Configure User Snippets 进行自定义代码段的管理。
+点击 New Global Snippets file... 新建自定义代码段：
+custom.code-snippets
+{ &amp;#34;Author Info&amp;#34;: { &amp;#34;scope&amp;#34;: &amp;#34;php,go&amp;#34;, &amp;#34;prefix&amp;#34;: &amp;#34;author&amp;#34;, &amp;#34;body&amp;#34;: [&amp;#34;/**&amp;#34;, &amp;#34;* $1&amp;#34;, &amp;#34;* @author 艾逗笔&amp;lt;http://idoubi.</description>
+    </item>
+    
+    <item>
+      <title>成语接龙插件：Idioms</title>
+      <link>http://example.org/courses/weiphp-dev/vol2/</link>
+      <pubDate>Fri, 09 Jan 2015 00:39:53 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol2/</guid>
+      <description>上个月的某一天逛开源中国社区，无意间看到一个帖子：http://www.oschina.net/code/snippet_2286076_44811，发帖的人分享了一个成语接龙的 API，当时觉得挺好玩的，就拿来做了一个 weiphp 成语接龙插件。做这样的一个插件还是很简单的，没有数据模型，不需要管理后台，也不需要写控制器和视图层的代码，直接在微信交互模型中根据用户的发送内容调用 API 返回内容就行了，开发过程中用到了一个很 nice 的 weiphp 方法：set_user_status()。下面把这个 weiphp 成语接龙插件的开发流程分享出来，让各位看官对 weiphp 插件开发能有更深一层次的理解。学会了这个插件，那么对于 weiphp 官方提供的智能聊天、机器人学习时间这样的插件源代码就不难理解了，如果想自己开发天气查询、四六级查询、火车查询等功能就会得心应手了。无非就是编辑微信交互模型，根据用户输入调用相应的 API 嘛~
+废话不多说，走起~
+1、创建插件。在 weiphp 管理后台创建成语接龙插件，勾选安装后立即启用，不需要配置项和管理列表。点“确定”完成插件的创建。
+2、安装插件。
+3、检测插件是否成功安装。返回到 weiphp 插件管理后台，可以看到成语接龙插件已经成功安装，因为创建该插件的时候没有勾选需要配置项，所以此处没有显示插件配置页面。
+4、编写微信响应代码。
+首先，我们来调试一下成语接龙的接口
+由调试结果我们可以发现，要使用户正常完成成语接龙，必须重复多次获得用户的输入关键词，当用户输入“成语接龙”时开始触发本插件，提示用户输入一个成语，然后获取用户的下一次输入，把用户的下一次输入提交到成语接龙接口地址，用 file_get_contents()函数获得接口返回的内容，如果接口返回内容是一个成语的话，则继续获取用户的下一次输入，并把用户输入的关键词提交到接口，按此规律循环，多次获取用户的输入关键词；若接口返回的内容是不是一个成语，比如是“成语必须为 4 个汉字”之类的提示语时，则回复给用户的消息中提示用户重新输入一个成语或者输入“退出”退出成语接龙；当用户输入的关键词为“退出”时，则退出成语接龙插件，用户的下一次输入将不会提交到成语接龙接口。
+整个微信交互模型开发的思路我们弄清楚了，接下来就开始写代码，其中最关键的是用到 weiphp 封装的一个函数 set_user_status(),这个函数的位置及用法如下图所示
+这个函数的大概意思就是把用户的输入作为缓存存储起来，与用户的下一次输入进行关联，从而完成一次连贯输入操作。用法比较简单，传递的第一个参数为插件的标识名，传递的第二个参数为自定义的一个关键词。
+下面我们就用这个函数来写一下连贯输入操作：
+5、微信测试。</description>
+    </item>
+    
+    <item>
+      <title>Without ToC</title>
+      <link>http://example.org/docs/example/table-of-contents/without-toc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/example/table-of-contents/without-toc/</guid>
+      <description>At me ipso nepotibus nunc celebratior genus Tanto oblite Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
+Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
+    </item>
+    
+    <item>
+      <title>快捷键大全</title>
+      <link>http://example.org/courses/vscode-guide/shortcuts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/shortcuts/</guid>
+      <description>Command 键  Command+A 选择全部 Command+B 切换侧边栏 Command+C 复制 Command+D 选择下一个相同的内容 Command+F 文件内查找 Command+I 选择一行 Command+J 切换控制台 Command+N 创建新文件 Command+O 打开文件 Command+P 查找文件 Command+Q 退出编辑器 Command+S 保存文件 Command+V 粘贴 Command+W 关闭编辑器/文件 Command+X 裁剪 Command+Z 撤销 Command+/ 行注释切换 Command+, 打开配置项 Command+] 缩进 Command+[ 退格 Command+enter 下一行编辑 Command+0/1/2/3/4/5/6 分栏窗口  Control 键  Control+A 跳到行首 Control+B 左移一格 Control+D 向右剪切 Control+E 跳到行尾 Control+F 右移一格 Control+G 定位行 Control+H 向左剪切 Control+J 合并下一行 Control+K 删除光标到行尾的内容 Control+N 光标下移一行 Control+P 光标上移一行 Control+Q 切换板面 Control+T 光标处字母移动 Control+W 切换窗口 Control+~ 切换 terminal 控制台 Control+- 倒退 Control+tab 切换 tab  Option 键  Option+↑ 向上移动一行 Option+↓ 向下移动一行 Option+→ 按单词向右移动 Option+← 按单词向左移动 Option+Z 切换换行  Shift+Command 组合键  Shift+Command+F 全局查找 Shift+Command+H 全局替换 Shift+Command+L 选择全部相同的内容 Shift+Command+M 切换 problems 控制台 Shift+Command+N 在新窗口打开并创建新文件 Shift+Command+P 打开命令面板 Shift+Command+S 文件另存为 Shift+Command+U 切换 output 控制器 Shift+Command+X 安装扩展 Shift+Command+Y 切换 debug console 控制台 Shift+Command+Z 重做 Shift+Command+→ 选择光标到行尾的内容 Shift+Command+← 选择光标到行头的内容  Option+Command 组合键  Option+Command+F 文件内替换 Option+Command+S 保存所有文件 Option+Command+0 多栏横屏模式 Option+Command+[ 折叠代码 Option+Command+] 展开代码 Option+Command+↑ 向上添加焦点 Option+Command+↓ 向下添加焦点 Option+Command+→ 下一个编辑窗口 Option+Command+← 上一个编辑窗口  Option+Shift 组合键  Option+Shift+A 块注释切换 Option+Shift+↑ 向上复制一行 Option+Shift+↓ 向下复制一行  Control+Command 组合键  Control+Command+space 表情和符号 Control+Command+F 切换全屏 Control+Command+→ 移到右侧的频幕 Control+Command+← 移到左侧的频幕  Control+Shift 组合键  Control+Shift+G 打开版本控制  其他  Control+Shift+Command+→ 扩大选择 Control+Shift+Command+← 缩小选择 Command+K Command+S 查找快键捷 Command+K Z 切换 Zen 模式 Command+K V 在右边栏预览  </description>
+    </item>
+    
+    <item>
+      <title>留言板插件：Liuyanban</title>
+      <link>http://example.org/courses/weiphp-dev/vol3/</link>
+      <pubDate>Sat, 10 Jan 2015 00:53:26 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol3/</guid>
+      <description>现在市面上有很多形如《xxx 实战教程》、《xxx 案例开发大全》之类的开发书籍，关于书的内容质量怎么样我就不多说了，呵呵一句你们就会懂的。我个人还是比较喜欢国外的编程教学类书籍，书中讲解的内容大部分都是比较严谨的，不仅讲实战，也会把原理解释得很清楚。但是国内的教程能做到这样的就很少了。回到正题上来，我们这次讲解的是 weiphp 留言板插件的开发流程，大家都知道，留言板是一门 web 开发技术入门级的案例，学习任何一门 web 开发技术，不管是 java、php 还是 python、ruby 之类的，要是能够写出一个留言板的实例来，那么就可以证明你算是入门了。所以我们今天就开始通过一个留言板的实例来入门 weiphp 插件开发。
+在开发此插件前，我们先来看一下这个插件的效果图，这里给大家分享一个我用 bootstrap 写的比较简单的留言板界面，一共两个页面：留言列表页面和发布留言页面，大家可以在我的百度云上面下载这个前台模板：http://pan.baidu.com/s/1sjFgsVF
+留言列表页面
+发布留言页面
+看到前台效果图，我们大概知道这个插件做好之后是怎么样了，这个插件相对来说比较简单，需要用到 weiphp 插件模板、数据模型等。
+下面我们开始一步一步来完成这个插件：
+1、创建插件。在 weiphp 管理后台中创建留言板插件，把下面的安装后是否立即启用、是否需要配置、是否需要管理列表全部勾上（如果需要进行数据库操作，并且插件用到的数据库只有一个表时就勾上需要管理列表，这时候在插件管理后台就会出现数据管理列表，列表里面的内容默认会调用与插件标识名一致的数据模型进行显示，也就是说如果我们把是否需要管理列表这个选项勾上了，那么我们在创建数据模型的时候需要把数据模型命名为 Liuyanban，这样的话我们就不需要对数据模型显示的方法进行重载即可调用 weiphp 默认的方法进行数据显示与管理，如果我们的模型名与插件标识名不一致的话，那么我们需要改写数据管理控制器，这个后面会讲到。）
+2、安装插件。
+3、查看插件是否安装成功。在插件管理后台可以看到留言板插件已经成功安装了，因为勾选了需要配置和需要管理列表，所以这个地方能看到配置页面和数据管理页面，因为数据模型和数据列表还没有定义，所以数据管理页面并没有显示每个字段标题。
+4、创建数据模型。在 weiphp 管理后台依次点击“系统-&amp;gt;模型管理-&amp;gt;新增”，进入数据模型创建页面，并创建 Liuyanban 数据模型。
+5、创建字段。在模型列表里面找到上一步创建好的 Liuyanban 数据模型，并点字段管理进入字段管理页面。
+点击新增依次建立如下字段。
+6、定义数据列表。在模型列表页面再次找到 liuyanban 模型，点击编辑进入模型编辑页面；
+在模型编辑页面点击设计进入列表定义页面；
+按下图所示进行列表定义。
+7、查看数据列表。再次回到插件管理后台，可以看到列表定义的字段已经显示出来。
+8、编辑配置文件。改写 config.php，添加下图所示配置项。
+回到插件管理后台，可以看到配置项成功应用。
+上传一张封面图片并点“确定”提交配置项。
+9、编写微信交互模型。在微信模型中设置当用户输入“留言板”触发此插件时回复单图文消息，跳转到留言列表页面（Liuyanban 控制器下的 index 方法），并传递用户的 openid 和公众号的 token 两个参数。其中 get_token()、get_openid()、addons_url()、get_cover_url()为 weiphp 封装的较为常用的方法，可以在 Application/Common/Common/function.php 中查看这些方法对应的用法和功能。
+10、显示前台模板。在 Liuyanban 控制器中新建 index()和 liuyan()两个方法，分别用于显示留言列表页面和发布留言页面。
+下载前台模板文件http://pan.baidu.com/s/1sjFgsVF，并把文件粘贴至 Liuyanban 插件的模板文件夹下面。</description>
+    </item>
+    
+    <item>
+      <title>配置参数详解</title>
+      <link>http://example.org/courses/vscode-guide/settings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/settings/</guid>
+      <description>配置参数详解 { &amp;#34;editor.fontSize&amp;#34;: 14, // 字体大小 &amp;#34;editor.formatOnSave&amp;#34;: true, // 保存时自动格式化 &amp;#34;files.autoSave&amp;#34;: &amp;#34;onFocusChange&amp;#34;, // 失去焦点时自动保存文件 &amp;#34;breadcrumbs.enabled&amp;#34;: true, // 显示文件路径 &amp;#34;window.zoomLevel&amp;#34;: 0, // 窗口缩放比例 &amp;#34;workbench.statusBar.visible&amp;#34;: true, // 隐藏底部状态栏 &amp;#34;workbench.colorTheme&amp;#34;: &amp;#34;An Old Hope Italic&amp;#34;, // 编辑器主题 &amp;#34;workbench.iconTheme&amp;#34;: &amp;#34;eq-material-theme-icons-ocean&amp;#34;, // 图标主题 &amp;#34;workbench.startupEditor&amp;#34;: &amp;#34;newUntitledFile&amp;#34;, // 编辑器欢迎设置 &amp;#34;explorer.confirmDragAndDrop&amp;#34;: false, // 移动文件时是否需要确认 &amp;#34;explorer.confirmDelete&amp;#34;: false, // 删除文件时是否需要确认 // 优化右侧预览地图样式 &amp;#34;editor.minimap.renderCharacters&amp;#34;: false, &amp;#34;editor.minimap.maxColumn&amp;#34;: 200, &amp;#34;editor.minimap.showSlider&amp;#34;: &amp;#34;always&amp;#34;, // go开发配置 &amp;#34;go.buildOnSave&amp;#34;: &amp;#34;workspace&amp;#34;, &amp;#34;go.lintOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.vetOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.buildFlags&amp;#34;: [], &amp;#34;go.lintFlags&amp;#34;: [], &amp;#34;go.vetFlags&amp;#34;: [], &amp;#34;go.</description>
+    </item>
+    
+    <item>
+      <title>签到插件：QianDao</title>
+      <link>http://example.org/courses/weiphp-dev/vol4/</link>
+      <pubDate>Sun, 12 Apr 2015 20:30:35 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol4/</guid>
+      <description>相信看过《分分钟上手 weiphp 插件开发》系列教程 前三篇的朋友对 weiphp 插件开发应该不陌生了，那么今天就再来分享一个相对较为简单的小功能的开发过程：weiphp 签到插件开发详解。
+其实签到功能在提高公众号用户粘性方面起到了很大的作用，通常会在一些电商类的平台中使用，运营人员通过设置相应的奖励来提高用户的签到积极性。鉴于时间有限，今天我要分享的这个签到功能较为简单，功能比较单一，感兴趣的朋友可以在此基础上继续扩展，完成更高级的功能，以达到商用的目标。
+1、首先肯定是在 weiphp 超级管理后台创建这个插件。不需要配置，需要管理列表。
+2、然后是安装这个插件。
+3、创建一个名为 qiandao 的数据模型，并新建四个字段。
+4、编辑 qiandao 数据模型的列表定义。
+5、编辑微信交互模型。weiphp/Addons/QianDao/Model/WeixinAddonModel.class.php
+代码解析：红框里面的就是整个签到功能的微信交互代码。首先获取到发送”签到“的用户的 openid 和当前公众号的 token，以及发送消息的时间和日期；然后判断一下该用户对应的 openid、token 以及日期 date 是否存在于签到表中（签到表中的不能存在 openid、token、date 完全相同的两条记录，即同一用户不能在同一天重复签到），如果用户已经签到过了，则提示用户不能重复签到。如果用户在发送消息的这一天是第一次签到，则把用户的 openid、当前公众号的 token、发送消息这天的日期 date 以及发送消息的时间 ctime 都存入到 qiandao 表，然后统计出签到表中日期 date 与用户发送消息当天的 date 相同的记录总数，提示用户是第几个签到的。
+6、在插件管理页面就能看到用户的签到记录。
+7、在微信端预览效果。
+至此，签到功能开发完毕，有兴趣的朋友可以在此基础上扩展这个功能，比如管理员可以在后台设置签到规则和签到的奖品之类的，授人以鱼不如授人以渔，希望大家多多思考，能够掌握 weiphp 插件开发的精髓。</description>
+    </item>
+    
+    <item>
+      <title>常用扩展推荐</title>
+      <link>http://example.org/courses/vscode-guide/extensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/extensions/</guid>
+      <description>主题样式  An Old Hope Theme   Monokai ST3   Material Theme   vscode-icons VS Code 文件图标扩展插件  功能扩展  Bracket Pair Colorizer：对括号进行成对着色 Code Runner：各种语言写的代码直接运行 GitLens：Git 源码管理插件 Settings Sync：VS Code 配置同步插件 DotENV：.env 文件高亮插件 Vim：VS Code 中使用 Vim 插件 Beautify：代码美化插件 Markdown Preview Enhanced：Markdown 预览插件 Markdown PDF：根据 Markdown 文件导出 PDF 文件插件  </description>
+    </item>
+    
+    <item>
+      <title>网页采集技术在weiphp插件中的使用</title>
+      <link>http://example.org/courses/weiphp-dev/vol5/</link>
+      <pubDate>Sun, 12 Apr 2015 23:52:02 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol5/</guid>
+      <description>自从写了一系列开发教程之后，每天都有很多的朋友来问我问题，有时候手机上网特别不方便回答，于是想到了做一个技术问答社区，来专门解决微信开发爱好者在开发中遇到的各种问题，于是有了艾豆问答社区。
+我对于艾豆问答社区的定位是做一个专注于微信开发问答的技术交流社区，类似于知乎、SegmentFault 这种的，现在的规划是分成 weiphp、微擎、小猪 CMS 几个板块，添加微信插件开发、微信功能定制等话题，通过技术分享、源码分享等方式来吸引各个平台的微信开发用户，以定制开发作为主要营收模式。
+艾豆问答社区采用开源的问答社区程序 WeCenter 二次开发而成，由于技术、运营都只有我一个人，艾豆问答社区发展的进度比较慢，这几天想到了把我在艾豆问答社区解决的一些问题分享到艾豆乐园微信公众号里面，让所有的公众号用户能够浏览和提问，起到一个移动化交流的作用。于是想到了数据采集。
+背景交代完毕，现在开始正题，讲一下如何用 curl 技术抓取目标网页并把抓取内容在微信中展示。
+先来看一下要抓取的网站：http://idouly.com/wenda/
+我现在需要做的就是把那些问问题的帖子都抓取下来，然后放到微信中显示。
+关于创建插件、安装插件等等内容我就不写了，看过《分分钟上手 weiphp 插件开发》系列教程前面四篇的朋友应该都清楚。我现在主要讲一下这个插件的微信交互部分。
+先贴代码：
+从第 17-53 行是整个功能的核心代码。第 17-20 行是最基本的 curl 网页抓取程序，首先做的是把http://idouly.com/wenda/这个网站上所有的内容抓下来。第 22 行是一条正则匹配规则，匹配出所有的问题，并把匹配到的内容存在数组$m 中。第 24-29 行是构建多图文消息的第一条消息。第 31-35 行是定义五张小图片。第 37-44 行构建了一个 for 循环，取出匹配到的问题数组中的最新五个问题，并用问题标题、链接以及自定义的小图片构建 5 条单图文消息。第 46-51 行构建最后一条单图文消息，点击该条消息可跳转至艾豆问答社区首页。第 53 行回复一条多图文消息（共 7 条单图文）。
+看一下微信端的效果：
+可以看到，但用户发送关键词触发此插件后，微信交互模型会自动去艾豆问答社区采集最新的五个问题，并把采集到的问题构建至一条多图文消息发送给用户。至此，整个功能开发完毕。
+此插件开发起来比较简单，关键是需要熟练使用 curl 技术，设计合理的正则表达式匹配出所需的内容。对网页采集感兴趣的朋友可以去看一下我的其他的采集教程：http://idoubi.cc/?p=280，也可以联系我购买我的”掌上头条“微信采集插件。其中”掌上头条“微信采集插件非常有技术含量，里面运用了很多高级的正则匹配技术、模拟采集技术，具有很大的借鉴意义。</description>
+    </item>
+    
+    <item>
+      <title>微信高级客服接口在weiphp插件中的使用</title>
+      <link>http://example.org/courses/weiphp-dev/vol6/</link>
+      <pubDate>Mon, 20 Apr 2015 15:25:55 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol6/</guid>
+      <description>接到一个用户的需求：想更改一下 weiphp 通用表单插件，当用户在微信端填写表单内容并提交表单后，系统自动把该用户填写的内容发送给指定的用户。
+评估了一下这个需求，发现做起来其实还是很容易的，主要就是需要用到微信的高级接口：客服接口。具体思路是：创建自定义通用表单时填写一个需要把表单内容发往的微信用户 uid（该 uid 可通过在微信中回复“uid”查看）——&amp;gt;当用户提交表单成功之后调用微信的高级接口把表单的内容发给指定用户。
+下面我们开始更改 weiphp 自带的通用表单（Forms）插件：
+1、在智能聊天（Chat）的微信交互模型（/Addons/Chat/Model/WeixinAddonModel.class.php）中实现当用户发送“uid”时返回用户 uid 的功能。
+2、在 weiphp 后台模型管理中找到 forms 模型，新增一个字段 uid。
+3、在微信中查看 uid。
+4、在通用表单插件中新建一个表单，并把表单提交后需要通知的用户 uid 填上去。
+5、新建几个字段。
+6、在 Application/Common/Common/function.php 中新增几个方法，用于使用微信客服接口（客服接口只有认证了的服务号才能使用）。
+7、在通用表单的控制器中改写表单提交的方法，当表单提交成功后调用客服接口函数给后台指定的用户发消息。
+8、我们现在在微信发送“报名”来触发第 4 步中创建的表单。
+9、点击进入填写表单。
+10、填写好表单之后点“确定”提交表单，被指定的用户在微信中就会立刻接到通知。
+好啦，本次任务圆满完成，客户承诺给的 500 元报酬妥妥的就到手了。
+weiphp 的通用表单还是很强大的，可以实现很多功能，而微信高级接口的接入自然让此功能如虎添翼。客服接口属于微信认证服务号独有的接口，有了此接口可以实现很多高级的功能，比如订餐系统中用户提交订单后店主接到订单通知、微信运营者与微信用户实时互动之类的。更多实用、好玩的功能还要靠大家一起去探索，本文只起到抛钻引玉的作用~</description>
+    </item>
+    
+    <item>
+      <title>打造 PHP 开发环境</title>
+      <link>http://example.org/courses/vscode-guide/php-dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/php-dev/</guid>
+      <description>插件推荐  PHP DocBlocker：PHP 注释插件，在 PHP 代码中输入 /** 快速生成注释。 PHP Intelephense：PHP 智能提示插件，可以完成代码提示、上下文跳转、代码格式化等功能。 php cs fixer：PHP 代码格式化专用插件。 phpcs：PHP 代码格式校验专用插件，此插件依赖 php-cs-fixer 命令行工具，在 macOS 中可以通过 brew install php-cs-fixer 进行安装。 MySQL：MySQL 管理插件。 PHP Debug：PHP 断点调试插件。  相关配置 { &amp;#34;php.validate.executablePath&amp;#34;: &amp;#34;/usr/local/bin/php&amp;#34;, // PHP 路径 &amp;#34;php.suggest.basic&amp;#34;: false // 防止默认提示与 Intelephense 插件提示冲突 } </description>
+    </item>
+    
+    <item>
+      <title>模拟请求技术在weiphp插件中的应用</title>
+      <link>http://example.org/courses/weiphp-dev/vol7/</link>
+      <pubDate>Sat, 23 May 2015 23:41:37 +0000</pubDate>
+      
+      <guid>http://example.org/courses/weiphp-dev/vol7/</guid>
+      <description>博主对于 curl 网页采集技术可谓是研究颇深，上个学期用 curl 技术写的一个名为“高校头条”的新闻采集系统前段时间刚刚卖出去了，同样用 curl 技术写的一个微信文章采集的 weiphp 插件“掌上头条”自发布以来已经卖出去几十个了，衷心感谢各位朋友对博主的支持，也让博主有了更高的热情在网页采集与数据挖掘这一领域更进一步的走下去。
+关于 curl 采集技术在 weiphp 插件中的实际运用我前面已经写过好多篇文章了，今天要给大家讲的是模拟请求技术，说白了也是 curl 的一种形式，就是在自己的代码中往目标网址模拟发送数据包，从而获得所需要的内容。很多人做过的刷票、论坛批量发帖基本上都是类似的原理。
+在 weiphp 系统中，有一个自带的插件叫“智能聊天”。在插件配置界面有一个填写图灵机器人 key 的文本框，用户需要在图灵机器人官网申请到一个正确的 key 值并填入此框，才能使用图灵机器人智能聊天的功能。
+但是呢，经常有朋友反馈说图灵机器人莫名其妙的就失效了。似乎通过申请图灵机器人 key 来使用智能聊天功能并不是一个很好的解决方案。于是博主便去图灵机器人官网的产品体验区体验了一发。
+体验的感觉还是不错的，图灵机器人的回复还算比较智能。于是博主便想到了在 weiphp 插件中模拟产品体验中与图灵机器人聊天的这个过程。当用户在微信端发送关键词后，把用户的关键词模拟提交到图灵机器人的智能回复处理地址，获得图灵机器人的回复内容，然后再把内容发送给用户。整个思路还是很清晰。下来就来讲一下流程。
+1、先来抓个包看一下，不需要安装 fiddler、firebug 之类的高级抓包工具，用 chrome 浏览器的 F12 调试面板就可以了。
+2、通过抓包我们可以清晰的看到当用户发送“你吃饭没有”时，数据请求的地址是：http://www.tuling123.com/openapi/productexp.do，请求方式是：POST，带的cookie是：JSESSIONID=aaa4rSE2Lk_HZ-XBWkb2u;（后面那个cookie是cnzz的cookie，没有多大用），发送的数据是：你吃饭没有。
+3、再来看一下接收到的数据。可以看到接收的是 xml 格式的数据，标签里的“刚吃了”就是我们需要的数据。
+4、整个与图灵机器人聊天的过程中数据包传输的过程我们已经弄清楚了，只需要写一段代码来模拟这个过程就可以获得我们所需要的数据了。那么现在还需要搞清楚的一个问题就是：聊天过程中发送的 cookie 是怎么来的。分析之后我们可以发现，模拟聊天过程中并没有要求我们登陆，也就是说这个 cookie 不是在用户登陆之后才得到的，而是访问这个聊天页面时自动生成的。所以我们只需要在模拟聊天之前访问这个页面，获得相应的 cookie，然后再带着这个 cookie 去模拟发送数据到处理聊天的地址，就可以获得图灵机器人的回复内容了。
+5、整个思路搞清楚了，下面上代码。我们更改一下 weiphp 自带的智能聊天插件 Chat，把模拟图灵机器人聊天的代码加上，让每次用户在微信端输入内容后，把用户输入的内容模拟发送到图灵机器人的聊天处理地址，然后通过正则表达式匹配出图灵机器人回复的内容，再把匹配出的内容回复给用户，整个微信端智能聊天过程就这么搞定了。直接上代码，看不懂的请百度 curl 教程。
+6、代码写完之后只要在微信端发送内容，系统就会自动的把用户发送的内容 post 到图灵机器人的聊天处理地址，然后把匹配出来的内容回复给用户。妥妥的整个数据模拟请求的过程就实现了。不过由于整个数据模拟请求过程中涉及到跨域请求，内容回复可能会有一点点的延迟~
+由于博主时间、精力有些，一些细节过程就没有详细写出来了，但凡有点 php 基础的朋友对整个过程理解起来应该不是很费劲。</description>
+    </item>
+    
+    <item>
+      <title>打造 Go 开发环境</title>
+      <link>http://example.org/courses/vscode-guide/go-dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/vscode-guide/go-dev/</guid>
+      <description>安装扩展 使用快捷键 Shift+Command+X 打开扩展安装页，安装扩展 Go。
+自定义扩展配置 使用快捷键 Command+, 打开自定义配置页，编辑 settings.json，定义与 Go 扩展相关的配置项。
+{ &amp;#34;editor.formatOnSave&amp;#34;: true, &amp;#34;files.autoSave&amp;#34;: &amp;#34;onFocusChange&amp;#34;, &amp;#34;go.buildOnSave&amp;#34;: &amp;#34;workspace&amp;#34;, &amp;#34;go.lintOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.vetOnSave&amp;#34;: &amp;#34;package&amp;#34;, &amp;#34;go.buildFlags&amp;#34;: [], &amp;#34;go.lintFlags&amp;#34;: [], &amp;#34;go.vetFlags&amp;#34;: [], &amp;#34;go.coverOnSave&amp;#34;: false, &amp;#34;go.autocompleteUnimportedPackages&amp;#34;: true, &amp;#34;go.useLanguageServer&amp;#34;: true, &amp;#34;go.inferGopath&amp;#34;: true, &amp;#34;go.docsTool&amp;#34;: &amp;#34;godoc&amp;#34;, &amp;#34;go.gocodePackageLookupMode&amp;#34;: &amp;#34;go&amp;#34;, &amp;#34;go.gotoSymbol.includeImports&amp;#34;: true, &amp;#34;go.useCodeSnippetsOnFunctionSuggest&amp;#34;: true, &amp;#34;go.useCodeSnippetsOnFunctionSuggestWithoutType&amp;#34;: true, &amp;#34;go.formatTool&amp;#34;: &amp;#34;goreturns&amp;#34;, &amp;#34;go.gocodeAutoBuild&amp;#34;: false, &amp;#34;go.liveErrors&amp;#34;: { &amp;#34;enabled&amp;#34;: true, &amp;#34;delay&amp;#34;: 0 }, &amp;#34;go.gopath&amp;#34;: &amp;#34;/data/go&amp;#34;, &amp;#34;go.goroot&amp;#34;: &amp;#34;/usr/local/Cellar/go/1.12.7/libexec&amp;#34; } 安装依赖 第一次编辑完 Go 代码保存的时候，VS Code 会提示需要安装依赖，点击 Install All 进行安装。如果遇到墙的问题，则需要手动安装依赖，需要先下载依赖源码，再进行安装。</description>
+    </item>
+    
+    <item>
+      <title>Creating a New Theme</title>
+      <link>http://example.org/posts/creating-a-new-theme/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/creating-a-new-theme/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+    <item>
+      <title>Migrate to Hugo from Jekyll</title>
+      <link>http://example.org/posts/migrate-from-jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/migrate-from-jekyll/</guid>
+      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+    <item>
+      <title>(Hu)go Template Primer</title>
+      <link>http://example.org/posts/goisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/goisforlovers/</guid>
+      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
+This document is a brief primer on using Go templates.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Hugo</title>
+      <link>http://example.org/posts/hugoisforlovers/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/hugoisforlovers/</guid>
+      <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
+Save it somewhere specific as we will be using it in the next step.
+More complete instructions are available at Install Hugo
+Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
+Follow the following steps:
+ Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch1/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch1/readme/</guid>
+      <description>Go 安装和配置 写在前面  教学 Go 版本 1.9.x 教学使用 GOPATH 为 ~/importgo  下载并安装  下载安装对应版本 https://golang.org/dl/ 查看 go 安装目录 /usr/local/go (Windows 下默认安装到 c:\Go) 运行 go version 命令检查是否安装正确    推荐大家使用二进制默认安装方式
+  项目环境变量 本课程命名为 importgo, 故添加一个 IMPORTGOROOT 的环境变量进行所有的代码开发和演示，具体配置如下：
+$ vi ~/.profile export IMPORTGOROOT=$HOME/importgo export GOPATH=$IMPORTGOROOT # 覆盖 GOPATH 环境变为 importgo export PATH=$IMPORTGOROOT/bin:$PATH # 当我们配置完毕后，可以执行 source ~/.profile 更新系统环境变量。
+编写我的第一个 Go 程序 首先需要在 GOPATH 文件夹下创建一个 src 目录用于存放我们的源代码。
+$ mkdir -p $GOPATH/src 然后我们在 src 目录下面新建 hello/hello.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/http/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/socket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/socket/</guid>
+      <description>Socket Socket是网络编程的一个抽象概念，通常我们用一个 Socket 表示 “打开了一个网络连接”，在 Go 中主要使用 net 包。
+使用 net 的 func Dial(network, address string) (Conn, error) 函数就可轻松建立一个 Socket 连接。Socket 创建成功后，我们可以对其进行 I/O 操作，最后不要记得对其进行关闭操作。
+本章将从 TCP， UDP， Unix 入手，带领大家全面了解 Socket 在 Go 中的应用。
+基本知识 Socket 连接又分为客户端和服务端，如图：
+核心步骤包括：
+ 创建连接:  Dial(network, address string) (Conn, error) 注意, 这里的 network 可以为:
+&amp;#34;tcp&amp;#34;, &amp;#34;tcp4&amp;#34;, &amp;#34;tcp6&amp;#34; &amp;#34;udp&amp;#34;, &amp;#34;udp4&amp;#34;, &amp;#34;udp6&amp;#34; &amp;#34;ip&amp;#34;, &amp;#34;ip4&amp;#34;, &amp;#34;ip6&amp;#34; &amp;#34;unix&amp;#34;, &amp;#34;unixgram&amp;#34;, &amp;#34;unixpacket&amp;#34;  通过连接发送数据:  conn.Write([]byte(&amp;quot;GET / HTTP/1.0\r\n\r\n&amp;quot;))  通过连接读取数据：  buf := make([]byte, 256) conn.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/websocket/</guid>
+      <description>WebSocket </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/mongodb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/readme/</guid>
+      <description>项目工程  包 工具 单元测试  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch2/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch2/readme/</guid>
+      <description>为什么选择 VSCode?  微软官方出品，更新迭代快 强大的插件：代码跳转，自动格式化，错误检测等  下载安装   登录 vscode 官网: https://code.visualstudio.com
+  根据操作系统选择对应包下载
+  将 code 命令添加到系统 PATH 中  效果：在终端输入 code &amp;lt;filename/foldername&amp;gt; 就能用 vscode 打开文件或文件夹
+   以 mac 为例：在 vscode 中使用快捷键 command + shif + p,
+  输入 shell command，选择 Shell Command:Install &#39;code&#39; command in PATH，如下图：
+  安装 Go 插件   登录 vscode 官网 Extensions模块：https://marketplace.visualstudio.com/VSCode
+  搜索 go 插件</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/const/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/const/</guid>
+      <description>常量定义 常量是指值不能改变的定义，它必须满足如下规则：
+ 定义的时候，必须指定值 指定的值类型主要有三类： 布尔，数字，字符串， 其中数字类型包含（rune, integer, floating-point, complex), 它们都属于基本数据类型。 不能使用 :=  例子：
+const a = 64 // 定义常量值为 64 的值 const ( b = 4 c = 0.1 ) </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/identifiers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/identifiers/</guid>
+      <description>命名规范 Go 语言中，任何标识符（变量，常量，函数，自定义类型等）都应该满足以下规律：
+ 连续的 字符 (unicode_letter | _ .) 或 数字(&amp;ldquo;0&amp;rdquo; … &amp;ldquo;9&amp;rdquo;) 组成。 以字符或下划线开头。 不能和 Go 关键字冲突。  Go 关键字: break default func interface select case defer go map struct chan else goto package switch const fallthrough if range type continue for import return var 举例说明： foo #合法 foo1 #合法 _foo #合法 变量 #合法 变量1 #合法 _变量 合法 1foo #不合法 1 #不合法 type #不合法 go #不合法 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/readme/</guid>
+      <description>基础知识  命名规范 变量 常量  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/var/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/var/</guid>
+      <description>变量声明 类型声明基本语法 在 Go 语言中，采用的是后置类型的声明方式，形如：
+&amp;lt;命名&amp;gt; &amp;lt;类型&amp;gt; 例如：
+x int // 定义 x 为整数类型 这么定义不是为了凸显与众不同，而是为了让声明更加清晰易懂，具体可以参考文章gos-declaration-syntax
+变量声明 在 Go 语言中通常我们使用关键字 var 来声明变量，例如
+var x int // 表示声明一个名为 x 的整数变量 var b int = 1 // 表示声明一个名为 b 的整数变量，并且附上初始值为 1 var b = 1 如果有多个变量同时声明，我们可以采用 var 加括号批量声明的方式:
+var ( a, b int // 同时声明 a, b 的整数 c float64 ) 简短声明方式 变量在声明的时候如果有初始值，我们可以使用 := 的简短声明方式：
+a := 1 // 声明 a 为 1 的整数 b := int64(1) // 声明 b 为 1 的 64 位整数 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch4/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch4/readme/</guid>
+      <description>基本数据类型 Go 语言中的基本数据类型包含：
+bool	the set of boolean (true, false) uint8	the set of all unsigned 8-bit integers (0 to 255) uint16	the set of all unsigned 16-bit integers (0 to 65535) uint32	the set of all unsigned 32-bit integers (0 to 4294967295) uint64	the set of all unsigned 64-bit integers (0 to 18446744073709551615) int8	the set of all signed 8-bit integers (-128 to 127) int16	the set of all signed 16-bit integers (-32768 to 32767) int32	the set of all signed 32-bit integers (-2147483648 to 2147483647) int64	the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807) float32	the set of all IEEE-754 32-bit floating-point numbers float64	the set of all IEEE-754 64-bit floating-point numbers complex64	the set of all complex numbers with float32 real and imaginary parts complex128	the set of all complex numbers with float64 real and imaginary parts byte	alias for uint8 rune	alias for int32 uint	either 32 or 64 bits int	same size as uint uintptr	an unsigned integer large enough to store the uninterpreted bits of a pointer value string	the set of string value (eg: &amp;quot;hi&amp;quot;) 我们可以将基本类型分为三大类：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/array/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/array/</guid>
+      <description>数组  定义：由若干相同类型的元素组成的序列 数组的长度是固定的，声明后无法改变 数组的长度是数组类型的一部分，eg：元素类型相同但是长度不同的两个数组是不同类型的 需要严格控制程序所使用内存时，数组十分有用，因为其长度固定，避免了内存二次分配操作  示例 package main import &amp;#34;fmt&amp;#34; func main() { // 定义长度为 5 的数组 	var arr1 [5]int for i := 0; i &amp;lt; 5; i++ { arr1[i] = i } printHelper(&amp;#34;arr1&amp;#34;, arr1) // 以下赋值会报类型不匹配错误，因为数组长度是数组类型的一部分 	// arr1 = [3]int{1, 2, 3} 	arr1 = [5]int{2, 3, 4, 5, 6} // 长度和元素类型都相同，可以正确赋值  // 简写模式，在定义的同时给出了赋值 	arr2 := [5]int{0, 1, 2, 3, 4} printHelper(&amp;#34;arr2&amp;#34;, arr2) // 数组元素类型相同并且数组长度相等的情况下，数组可以进行比较 	fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/custom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/custom/</guid>
+      <description>自定义类型 前面我们已经学习了不少基础和高级数据类型，在 Go 语言里面，我们还可以通过自定义类型来表示一些特殊的数据结构和业务逻辑。
+使用关键字 type 来声明：
+type NAME TYPE 声明语法  单次声明  type City string  批量声明  type ( B0 = int8 B1 = int16 B2 = int32 B3 = int64 ) type ( A0 int8 A1 int16 A2 int32 A3 int64 ) 简单示例 package main import &amp;quot;fmt&amp;quot; type City string func main() { city := City(&amp;quot;上海&amp;quot;) fmt.Println(city) } 基本操作 package main import &amp;quot;fmt&amp;quot; type City string type Age int func main() { city := City(&amp;quot;北京&amp;quot;) fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/function/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/function/</guid>
+      <description>函数  函数是语句序列的集合，能够将一个大的工作分解为小的任务，对外隐藏了实现细节
+  函数组成  函数名 参数列表(parameter-list) 返回值(result-list) 函数体(body)    func name(parameter-list) (result-list){ body }  单返回值函数  func plus(a, b int) (res int){ return a + b }  多返回值函数  func multi()(string, int){ return &amp;#34;name&amp;#34;, 18 }  命名返回值  // 被命名的返回参数的值为该类型的默认零值 // 该例子中 name 默认初始化为空字符串，height 默认初始化为 0 func namedReturnValue()(name string, height int){ name = &amp;#34;xiaoming&amp;#34; height = 180 return }  参数可变函数  func sum(nums .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/interface/</guid>
+      <description>接口 接口类型是一种抽象类型，是方法的集合，其他类型实现了这些方法就是实现了这个接口。
+/* 定义接口 */ type interface_name interface { method_name1 [return_type] method_name2 [return_type] method_name3 [return_type] ... method_namen [return_type] } 简单示例：打印不同几何图形的面积和周长 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;math&amp;#34; ) type geometry interface { area() float32 perim() float32 } type rect struct { len, wid float32 } func (r rect) area() float32 { return r.len * r.wid } func (r rect) perim() float32 { return 2 * (r.len + r.wid) } type circle struct { radius float32 } func (c circle) area() float32 { return math.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/map/</guid>
+      <description>Map 在 Go 语言里面，map 一种无序的键值对, 它是数据结构 hash 表的一种实现方式，类似 Python 中的字典。
+语法 使用关键字 map 来声明形如：
+map[KeyType]ValueType 注意点：
+ 必须指定 key, value 的类型，插入的纪录类型必须匹配。 key 具有唯一性，插入纪录的 key 不能重复。 KeyType 可以为基础数据类型（例如 bool, 数字类型，字符串）, 不能为数组，切片，map，它的取值必须是能够使用 == 进行比较。 ValueType 可以为任意类型。 无序性。 线程不安全, 一个 goroutine 在对 map 进行写的时候，另外的 goroutine 不能进行读和写操作，Go 1.6 版本以后会抛出 runtime 错误信息。  声明和初始化  使用 var 声明  var cMap map[string]int // 只定义, 此时 cMap 为 nil fmt.Println(cMap == nil) cMap[&amp;#34;北京&amp;#34;] = 1 // 报错，因为 cMap 为 nil  使用 make  cMap := make(map[string]int) cMap[&amp;#34;北京&amp;#34;] = 1 // 指定初始容量 cMap = make(map[string]int, 100) cMap[&amp;#34;北京&amp;#34;] = 1 说明：在使用 make 初始化 map 的时候，可以指定初始容量，这在能预估 map key 数量的情况下，减少动态分配的次数，从而提升性能。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/method/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/method/</guid>
+      <description>方法 方法主要源于 OOP 语言，在传统面向对象语言中 (例如 C++), 我们会用一个“类”来封装属于自己的数据和函数，这些类的函数就叫做方法。
+虽然 Go 不是经典意义上的面向对象语言，但是我们可以在一些接收者（自定义类型，结构体）上定义函数，同理这些接收者的函数在 Go 里面也叫做方法。
+声明 方法（method）的声明和函数很相似, 只不过它必须指定接收者：
+func (t T) F() {} 注意：
+ 接收者的类型只能为用关键字 type 定义的类型，例如自定义类型，结构体。 同一个接收者的方法名不能重复 (没有重载)，如果是结构体，方法名还不能和字段名重复。 值作为接收者无法修改其值，如果有更改需求，需要使用指针类型。  简单例子 package main type T struct{} func (t T) F() {} func main() { t := T{} t.F() } 接收者类型不是任意类型 例如：
+package main func (t int64) F() {} func main() { t := int64(10) t.F() } 当运行以下代码会得到 cannot define new methods on non-local type int64 类似错误信息，我们可以使用自定义类型来解决：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/readme/</guid>
+      <description>高级数据类型  数组 切片 Map 自定义类型 结构体 函数 方法 接口  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/slice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/slice/</guid>
+      <description>切片 切片组成要素：  指针：指向底层数组 长度：切片中元素的长度，不能大于容量 容量：指针所指向的底层数组的总容量  常见初始化方式  使用 make 初始化  slice := make([]int, 5) // 初始化长度和容量都为 5 的切片 slice := make([]int, 5, 10) // 初始化长度为 5, 容量为 10 的切片  使用简短定义  slice := []int{1, 2, 3, 4, 5}  使用数组来初始化切片  arr := [5]int{1, 2, 3, 4, 5} slice := arr[0:3] // 左闭右开区间，最终切片为 [1,2,3]  使用切片来初始化切片  sliceA := []int{1, 2, 3, 4, 5} sliceB := sliceA[0:3] // 左闭右开区间，sliceB 最终为 [1,2,3] 长度和容量 package main import ( &amp;#34;fmt&amp;#34; ) func main() { slice := []int{1, 2, 3, 4, 5} fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/struct/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/struct/</guid>
+      <description>结构体 数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。
+ 结构体是由零个或多个任意类型的值聚合成的实体
+ 关键字 type 和 struct 用来定义结构体：
+type StructName struct{ FieldName type } 简单示例：定义一个学生结构体 package main import &amp;#34;fmt&amp;#34; type Student struct { Age int Name string } func main() { stu := Student{ Age: 18, Name: &amp;#34;name&amp;#34;, } fmt.Println(stu) // 在赋值的时候，字段名可以忽略 	fmt.Println(Student{20, &amp;#34;new name&amp;#34;}) return }  通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：
+ type Student struct{ Age int Name, Address string }  一个结构体中的字段名是唯一的，例如一下代码，出现了两个 Name 字段，是错误的：
+ type Student struct{ Name string Name string }  结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/control/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/control/</guid>
+      <description>#分支循环
+在编写 Go 程序的时候，我们不仅会用前面学到的数据结构来存储数据，还会用到 if、switch、for 来进行条件判断和流程控制，今天我们就来一起学习下它们。
+if if 主要用于条件判断，语法为：
+if 条件 { # 业务代码 } 先看一个简单例子:
+package main import &amp;quot;fmt&amp;quot; func main() { age := 7 if age &amp;gt; 6 { fmt.Println(&amp;quot;It&#39;s primary school&amp;quot;) } } 我们可以在条件中使用 &amp;amp; 或 || 来进行组合判断：
+package main import &amp;quot;fmt&amp;quot; func main() { age := 7 if age &amp;gt; 6 &amp;amp;&amp;amp; age &amp;lt;= 12 { fmt.Println(&amp;quot;It&#39;s primary school&amp;quot;) } } 我们还可以使用 if..else if..else 来实现多分支的条件判断:
+package main import &amp;quot;fmt&amp;quot; func main() { age := 13 if age &amp;gt; 6 &amp;amp;&amp;amp; age &amp;lt;= 12 { fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/error/</guid>
+      <description>异常处理 defer 上一节课介绍了常见的流程控制，这一节课将介绍一个 Go 特有的流程控制语句： defer
+defer 通常用于延迟调用指定的函数。例如：
+func outerFunc() { defer fmt.Printf(&amp;#34; World!\n&amp;#34;) fmt.Print(&amp;#34;Hello&amp;#34;) } 上例最终输出的结果是： &amp;ldquo;Hello World!&amp;quot;.
+这是因为：defer 会在 outerFunc 退出之前执行打印操作，因此被 defer 调用的函数也称为“延迟函数”。
+defer 常用场景 defer语句经常被用于处理成对的操作，如打开和关闭，连接和断开连接，加锁和释放锁。恰当使用 defer 能够保证资源正确释放。 以下是几个例子：
+// 使用 defer 关闭 http 请求响应体的 Body func closeBody(url string) error { resp, err := http.Get(url) defer resp.Body.Close() // ... do more stuff ...  return err } // 使用 defer 关闭文件句柄 func closeFile(filename string) error{ f, err := os.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/readme/</guid>
+      <description>流程控制  分支循环 异常处理  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/atomic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/atomic/</guid>
+      <description>原子操作  本文讲解 golang 中 sync.atomic 的常见操作
+ atomic 提供的原子操作能够确保任一时刻只有一个goroutine对变量进行操作，善用 atomic 能够避免程序中出现大量的锁操作。
+atomic常见操作有：
+ 增减 载入 比较并交换 交换 存储  下面将分别介绍这些操作。
+增减操作 atomic 包中提供了如下以Add为前缀的增减操作:
+ func AddInt32(addr *int32, delta int32) (new int32) func AddInt64(addr *int64, delta int64) (new int64) func AddUint32(addr *uint32, delta uint32) (new uint32) func AddUint64(addr *uint64, delta uint64) (new uint64) func AddUintptr(addr *uintptr, delta uintptr) (new uintptr)   需要注意的是，第一个参数必须是指针类型的值，通过指针变量可以获取被操作数在内存中的地址，确保同一时间只有一个goroutine能够进行操作。
+ 先来看一个例子： 分别用“锁”和原子操作来实现多个 goroutine 对同一个变量进行累加操作。
+使用锁实现 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { var ( mux sync.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/channel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/channel/</guid>
+      <description>channel channel 简介 goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行通信的重要桥梁。
+使用内建函数 make 可以创建 channel，举例如下：
+ch := make(chan int) // 注意： channel 必须定义其传递的数据类型 也可以用 var 声明 channel, 如下：
+var ch chan int 以上声明的 channel 都是双向的，意味着可以该 channel 可以发送数据，也可以接收数据。
+“发送”和“接收”是 channel 的两个基本操作。
+ch &amp;lt;- x // channel 接收数据 x  x &amp;lt;- ch // channel 发送数据并赋值给 x  &amp;lt;- ch // channel 发送数据，忽略接受者 channel buffer 上文提到，可以通过 make(chan int) 创建channel，此类 channel 称之为非缓冲通道。事实上 channel 可以定义缓冲大小，如下：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/goroutine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/goroutine/</guid>
+      <description>Goroutine （并发） 并发指的是多个任务被（一个）cpu 轮流切换执行，在 Go 语言里面主要用 goroutine （协程）来实现并发，类似于其他语言中的线程（绿色线程）。
+语法 go f(x, y, z) 具体例子 首先我们看一个例子：
+package main import ( &amp;quot;log&amp;quot; &amp;quot;time&amp;quot; ) func doSomething(id int) { log.Printf(&amp;quot;before do job:(%d) \n&amp;quot;, id) time.Sleep(3 * time.Second) log.Printf(&amp;quot;after do job:(%d) \n&amp;quot;, id) } func main() { doSomething(1) doSomething(2) doSomething(3) } 输出结果为：
+2018/03/16 12:13:20 before do job:(1) 2018/03/16 12:13:23 after do job:(1) 2018/03/16 12:13:23 before do job:(2) 2018/03/16 12:13:26 after do job:(2) 2018/03/16 12:13:26 before do job:(3) 2018/03/16 12:13:29 after do job:(3) 可以看到执行完结果总共耗时 9 秒，每个任务是阻塞的。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/lock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/lock/</guid>
+      <description>锁 在前面我们已经讲了如何使用 channel 在多个 goroutine 之间进行通信，其实对于并发还有一种较为常用通信方式，那就是共享内存。
+首先我们来看一个例子：
+package main import ( &amp;quot;log&amp;quot; &amp;quot;time&amp;quot; ) var name string func main() { name = &amp;quot;小明&amp;quot; go printName() go printName() time.Sleep(time.Second) name = &amp;quot;小红&amp;quot; go printName() go printName() time.Sleep(time.Second) } func printName() { log.Println(&amp;quot;name is&amp;quot;, name) } 运行程序，可以得到类似输出结果：
+2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:29 name is 小红 2018/03/23 14:53:29 name is 小红 可以看到在两个 goroutine 中我们都可以访问 name 这个变量，当修改它后，在不同的 goroutine 中都可以同时获取到最新的值。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/readme/</guid>
+      <description>并发  Goroutine Channel 锁的使用 原子操作  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/readfile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/readfile/</guid>
+      <description>读文件 在日常开发中我们少不了对文件读取，今天我们就从三部分来讲解：全量读，带缓冲区读，任意位置读。
+全量读 我们先来看看一个简单的例子：
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; ) func main() { dat, err := ioutil.ReadFile(&amp;quot;./main.go&amp;quot;) fmt.Println(err) fmt.Println(string(dat)) } 运行程序可以打印整个 main.go 文件内容，如果我们将 ./main.go 修改为 ./main.go1，程序将出现 no such file or directory 的错误， 所以在文件读取的时候一定要注意检查 err。
+带缓冲区读 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.Open(&amp;quot;./main.go&amp;quot;) defer f.Close() buf := make([]byte, 16) f.Read(buf) fmt.Println(string(buf)) } 运行程序会输出 main.go 的前 16 个字节内容，具体为：
+package main im 任意位置读 有些时候我们想在一个文件特定地方读取特定长度的内容，那我们有什么方法可以使用呢？
+第一种： f.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/writefile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/writefile/</guid>
+      <description>写文件 上一节课介绍了 Go 读文件的常用操作，本章节将介绍 Go 写文件的相关操作，包括：
+ 创建文件 在文件指定位置写入内容 通过 Buffered Writter 写文件  创建文件  使用 os.Create(name string) 方法创建文件 使用 os.Stat(name string) 方法获取文件信息  简单示例：
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;os&amp;#34; ) func checkErr(err error) { if err != nil { panic(err) } } func main() { path := &amp;#34;test.txt&amp;#34; newFile, err := os.Create(path) checkErr(err) defer newFile.Close() fileInfo, err := os.Stat(path) if err != nil { if os.IsNotExist(err) { fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/json/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/json/</guid>
+      <description>JSON 序列化和反序列化 上一节我们介绍了 xml 的使用，其实对于数据的序列化和反序列化还有一种更为常见的方式，那就是 JSON，尤其是在 http, rpc 的微服务调用中。
+基础语法 在 Go 中我们主要使用官方的 encoding/json 包对 JSON 数据进行序列化和反序列化，主要使用方法有：
+ 序列化:  func Marshal(v interface{}) ([]byte, error)  反序列化：  func Unmarshal(data []byte, v interface{}) error 简单例子：
+package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { var ( data = `1` value int ) err1 := json.Unmarshal([]byte(data), &amp;amp;value) fmt.Println(&amp;#34;Unmarshal error is:&amp;#34;, err1) fmt.Printf(&amp;#34;Unmarshal value is: %T, %d \n&amp;#34;, value, value) value2, err2 := json.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/xml/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/xml/</guid>
+      <description>xml 序列化和反序列化 这一节课将介绍 xml 的序列化和反序列化。
+首先看下 xml 标签常见用法：
+ xml:&amp;quot;xxx,omitempty&amp;quot; 代表如果这个字段值为空，则序列化时忽略该字段 xml:&amp;quot;xxx,attr&amp;quot; 代表该字段为 xml 标签的属性说明 xml:&amp;quot;-&amp;quot; 代表序列化时忽略该字段 xml:&amp;quot;a&amp;gt;b&amp;gt;c&amp;quot; 代表 xml 标签嵌套模式  以下例子，演示了
+ xml 序列化，包含 xml 标签的不同用法 写 xml 文件 读 xml 文件 xml 反序列化  package main import ( &amp;#34;encoding/xml&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; ) type Student struct { Name string `xml:&amp;#34;name&amp;#34;` // xml 标签 	Address string `xml:&amp;#34;address,omitempty&amp;#34;` // 如果该字段为空就过滤掉 	Hobby string `xml:&amp;#34;-&amp;#34;` // 进行 xml 序列化的时候忽略该字段 	Father string `xml:&amp;#34;parent&amp;gt;father&amp;#34;` // xml 标签嵌套模式 	Mother string `xml:&amp;#34;parent&amp;gt;mother&amp;#34;` // xml 标签嵌套模式 	Note string `xml:&amp;#34;note,attr&amp;#34;` // xml 标签属性 } func checkErr(err error) { if err !</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/readme/</guid>
+      <description>Go 零基础编程入门教程 制作、分享高质量 Go 入门教程，包括：
+ 视频  B 站主页: https://space.bilibili.com/276273794/#/   GitBook 书籍: https://www.gitbook.com/book/songjiayang/go-basic-courses/details GitHub 源码: https://github.com/binatify/importgo 欢迎加入 QQ 群：694650181 ，加入请备注：“Go 零基础入门教程”  作者   宋佳洋
+ 微博 github 个人公众号      薛锦
+ 微博 github 个人公众号    </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/summary/</guid>
+      <description>Summary   Go 零基础编程入门教程
+  Go 安装和配置
+  Go 开发利器：VSCode
+  基础知识
+ 命名规范 变量 常量    基础数据类型
+  高级类型
+ 数组 切片 Map 自定义类型 结构体 函数 方法 接口    流程控制
+ 分支循环 异常处理    并发
+ Goroutine Channel 锁的使用 原子操作    文件操作
+ 读文件 写文件    序列化和反序列化
+ xml json    网络</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/example/collapsed/3rd-level/4th-level/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/example/collapsed/3rd-level/4th-level/</guid>
+      <description>4th Level of Menu Caesorum illa tu sentit micat vestes papyriferi Inde aderam facti; Theseus vis de tauri illa peream. Oculos uberaque non regisque vobis cursuque, opus venit quam vulnera. Et maiora necemque, lege modo; gestanda nitidi, vero? Dum ne pectoraque testantur.
+Venasque repulsa Samos qui, exspectatum eram animosque hinc, aut manes, Assyrii. Cupiens auctoribus pariter rubet, profana magni super nocens. Vos ius sibilat inpar turba visae iusto! Sedes ante dum superest extrema.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/example/hidden/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/example/hidden/</guid>
+      <description>This page is hidden in menu Quondam non pater est dignior ille Eurotas Latent te facies Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
+ Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor  Cum honorum Latona O fallor in sustinui iussorum equidem.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/buttons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/buttons/</guid>
+      <description>Buttons Buttons are styled links that can lead to local page or external link.
+Example {{&amp;lt; button relref=&amp;#34;/&amp;#34; [class=&amp;#34;...&amp;#34;] &amp;gt;}}Get Home{{&amp;lt; /button &amp;gt;}} {{&amp;lt; button href=&amp;#34;https://github.com/alex-shpak/hugo-book&amp;#34; &amp;gt;}}Contribute{{&amp;lt; /button &amp;gt;}}  Get Home  Contribute  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/columns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/columns/</guid>
+      <description>Columns Columns help organize shorter pieces of content horizontally for readability.
+{{&amp;lt; columns &amp;gt;}} &amp;lt;!-- begin columns block --&amp;gt; # Left Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic sparator, between columns --&amp;gt; # Mid Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic sparator, between columns --&amp;gt; # Right Content Lorem markdownum insigne... {{&amp;lt; /columns &amp;gt;}} Example Left Content Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/details/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/details/</guid>
+      <description>Details Details shortcode is a helper for details html5 element. It is going to replace expand shortcode.
+Example {{&amp;lt; details &amp;#34;Title&amp;#34; [open] &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /details &amp;gt;}} {{&amp;lt; details title=&amp;#34;Title&amp;#34; open=true &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /details &amp;gt;}} Title Markdown content Lorem markdownum insigne&amp;hellip;   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/expand/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/expand/</guid>
+      <description>Expand Expand shortcode can help to decrease clutter on screen by hiding part of text. Expand content by clicking on it.
+Example Default {{&amp;lt; expand &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}   Expand ↕  Markdown content Lorem markdownum insigne&amp;hellip;    With Custom Label {{&amp;lt; expand &amp;#34;Custom Label&amp;#34; &amp;#34;...&amp;#34; &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}   Custom Label .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/hints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/hints/</guid>
+      <description>Hints Hint shortcode can be used as hint/alerts/notification block.
+There are 3 colors to choose: info, warning and danger.
+{{&amp;lt; hint [info|warning|danger] &amp;gt;}} **Markdown content** Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa {{&amp;lt; /hint &amp;gt;}} Example Markdown content
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa  Markdown content</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/katex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/katex/</guid>
+      <description>KaTeX KaTeX shortcode let you render math typesetting in markdown document. See KaTeX
+Example {{&amp;lt; katex [display] [class=&amp;#34;text-center&amp;#34;] &amp;gt;}} f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi {{&amp;lt; /katex &amp;gt;}}     Display Mode Example Here is some inline example:  \(\pi(x)\)  , rendered in the same line. And below is display example, having display: block  \[f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi\]  Text continues here.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/mermaid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/mermaid/</guid>
+      <description>Mermaid Chart Mermaid is library for generating svg charts and diagrams from text.
+Example {{&amp;lt; mermaid [class=&amp;#34;text-center&amp;#34;]&amp;gt;}} sequenceDiagram Alice-&amp;gt;&amp;gt;Bob: Hello Bob, how are you? alt is sick Bob-&amp;gt;&amp;gt;Alice: Not so good :( else is well Bob-&amp;gt;&amp;gt;Alice: Feeling fresh like a daisy end opt Extra response Bob-&amp;gt;&amp;gt;Alice: Thanks for asking end {{&amp;lt; /mermaid &amp;gt;}}     </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/docs/shortcodes/tabs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/docs/shortcodes/tabs/</guid>
+      <description>Tabs Tabs let you organize content by context, for example installation instructions for each supported platform.
+{{&amp;lt; tabs &amp;#34;uniqueid&amp;#34; &amp;gt;}} {{&amp;lt; tab &amp;#34;MacOS&amp;#34; &amp;gt;}} # MacOS Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Linux&amp;#34; &amp;gt;}} # Linux Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Windows&amp;#34; &amp;gt;}} # Windows Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabs &amp;gt;}} Example MacOS MacOS This is tab MacOS content.
+Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/menu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/menu/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

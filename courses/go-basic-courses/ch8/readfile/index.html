@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="读文件 在日常开发中我们少不了对文件读取，今天我们就从三部分来讲解：全量读，带缓冲区读，任意位置读。
+全量读 我们先来看看一个简单的例子：
+package main import ( &quot;fmt&quot; &quot;io/ioutil&quot; ) func main() { dat, err := ioutil.ReadFile(&quot;./main.go&quot;) fmt.Println(err) fmt.Println(string(dat)) } 运行程序可以打印整个 main.go 文件内容，如果我们将 ./main.go 修改为 ./main.go1，程序将出现 no such file or directory 的错误， 所以在文件读取的时候一定要注意检查 err。
+带缓冲区读 package main import ( &quot;fmt&quot; &quot;os&quot; ) func main() { f, _ := os.Open(&quot;./main.go&quot;) defer f.Close() buf := make([]byte, 16) f.Read(buf) fmt.Println(string(buf)) } 运行程序会输出 main.go 的前 16 个字节内容，具体为：
+package main im 任意位置读 有些时候我们想在一个文件特定地方读取特定长度的内容，那我们有什么方法可以使用呢？
+第一种： f.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="读文件 在日常开发中我们少不了对文件读取，今天我们就从三部分来讲解：全量读，带缓冲区读，任意位置读。
+全量读 我们先来看看一个简单的例子：
+package main import ( &quot;fmt&quot; &quot;io/ioutil&quot; ) func main() { dat, err := ioutil.ReadFile(&quot;./main.go&quot;) fmt.Println(err) fmt.Println(string(dat)) } 运行程序可以打印整个 main.go 文件内容，如果我们将 ./main.go 修改为 ./main.go1，程序将出现 no such file or directory 的错误， 所以在文件读取的时候一定要注意检查 err。
+带缓冲区读 package main import ( &quot;fmt&quot; &quot;os&quot; ) func main() { f, _ := os.Open(&quot;./main.go&quot;) defer f.Close() buf := make([]byte, 16) f.Read(buf) fmt.Println(string(buf)) } 运行程序会输出 main.go 的前 16 个字节内容，具体为：
+package main im 任意位置读 有些时候我们想在一个文件特定地方读取特定长度的内容，那我们有什么方法可以使用呢？
+第一种： f." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch8/readfile/" />
+
+<title>Readfile | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Readfile</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#全量读">全量读</a></li>
+        <li><a href="#带缓冲区读">带缓冲区读</a></li>
+        <li><a href="#任意位置读">任意位置读</a></li>
+        <li><a href="#项目实战">项目实战</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h1 id="读文件">读文件</h1>
+<p>在日常开发中我们少不了对文件读取，今天我们就从三部分来讲解：全量读，带缓冲区读，任意位置读。</p>
+<h3 id="全量读">全量读</h3>
+<p>我们先来看看一个简单的例子：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;io/ioutil&quot;
+)
+
+func main() {
+	dat, err := ioutil.ReadFile(&quot;./main.go&quot;)
+	fmt.Println(err)
+	fmt.Println(string(dat))
+}
+</code></pre><p>运行程序可以打印整个 <code>main.go</code> 文件内容，如果我们将 <code>./main.go</code> 修改为 <code>./main.go1</code>，程序将出现 <code>no such file or directory</code> 的错误，
+所以在文件读取的时候一定要注意检查 err。</p>
+<h3 id="带缓冲区读">带缓冲区读</h3>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	buf := make([]byte, 16)
+	f.Read(buf)
+
+	fmt.Println(string(buf))
+}
+</code></pre><p>运行程序会输出 <code>main.go</code> 的前 16 个字节内容，具体为：</p>
+<pre><code>package main
+
+im
+</code></pre><h3 id="任意位置读">任意位置读</h3>
+<p>有些时候我们想在一个文件特定地方读取特定长度的内容，那我们有什么方法可以使用呢？</p>
+<p>第一种： f.Seek + f.Read</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	b1 := make([]byte, 2)
+
+	f.Seek(5, 0)
+	f.Read(b1)
+	fmt.Println(string(b1))
+}
+</code></pre><p>运行代码输出结果为：</p>
+<pre><code>ge
+</code></pre><p>第二种：使用 <code>f.ReadAt</code></p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	b1 := make([]byte, 2)
+
+	f.ReadAt(b1, 5)
+	fmt.Println(string(b1))
+}
+</code></pre><p>运行结果同样为：</p>
+<pre><code>ge
+</code></pre><p>但注意：</p>
+<p>第一种方式是非并发安全的，例如：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	for i := 0; i &lt; 5; i++ {
+		go func() {
+			b1 := make([]byte, 2)
+
+			f.Seek(5, 0)
+			f.Read(b1)
+			fmt.Println(string(b1))
+
+			f.Seek(2, 0)
+			f.Read(b1)
+			fmt.Println(string(b1))
+		}()
+	}
+
+	time.Sleep(time.Second)
+}
+
+</code></pre><p>输出结果为：</p>
+<pre><code>ge
+ge
+ge
+ck
+ck
+ai
+ck
+ m
+ck
+ck
+</code></pre><p>第二种 <code>f.ReadAt</code> 是并发安全的，例如：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	for i := 0; i &lt; 5; i++ {
+		go func() {
+			b1 := make([]byte, 2)
+			f.ReadAt(b1, 5)
+			fmt.Println(string(b1))
+
+			f.ReadAt(b1, 2)
+			fmt.Println(string(b1))
+		}()
+	}
+
+	time.Sleep(time.Second)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>ge
+ge
+ck
+ck
+ge
+ge
+ck
+ck
+ge
+ck
+</code></pre><h3 id="项目实战">项目实战</h3>
+<p>实战项目一： 如何使用 <code>buf</code> 实现 <code>ioutil.ReadFile</code> 类似效果：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	content := make([]byte, 0)
+	buf := make([]byte, 16)
+
+	for {
+		n, err := f.Read(buf)
+		if err == io.EOF {
+			break
+		}
+
+		if n == 16 {
+			content = append(content, buf...)
+		} else {
+			content = append(content, buf[0:n]...)
+		}
+	}
+
+	fmt.Println(string(content))
+}
+</code></pre><p>实战项目二： 使用 <code>bufio</code> 实现行统计：</p>
+<pre><code>package main
+
+import (
+	&quot;bufio&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	f, _ := os.Open(&quot;./main.go&quot;)
+	defer f.Close()
+
+	br := bufio.NewReader(f)
+	totalLine := 0
+
+	for {
+		_, isPrefix, err := br.ReadLine()
+
+		if !isPrefix {
+			totalLine += 1
+		}
+
+		if err == io.EOF {
+			break
+		}
+	}
+
+	fmt.Println(&quot;total lines is:&quot;, totalLine)
+}
+</code></pre><p>运行结果为：</p>
+<pre><code>total lines is: 31
+</code></pre></article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#全量读">全量读</a></li>
+        <li><a href="#带缓冲区读">带缓冲区读</a></li>
+        <li><a href="#任意位置读">任意位置读</a></li>
+        <li><a href="#项目实战">项目实战</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="channel channel 简介 goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行通信的重要桥梁。
+使用内建函数 make 可以创建 channel，举例如下：
+ch := make(chan int) // 注意： channel 必须定义其传递的数据类型 也可以用 var 声明 channel, 如下：
+var ch chan int 以上声明的 channel 都是双向的，意味着可以该 channel 可以发送数据，也可以接收数据。
+“发送”和“接收”是 channel 的两个基本操作。
+ch &lt;- x // channel 接收数据 x  x &lt;- ch // channel 发送数据并赋值给 x  &lt;- ch // channel 发送数据，忽略接受者 channel buffer 上文提到，可以通过 make(chan int) 创建channel，此类 channel 称之为非缓冲通道。事实上 channel 可以定义缓冲大小，如下：">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="channel channel 简介 goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行通信的重要桥梁。
+使用内建函数 make 可以创建 channel，举例如下：
+ch := make(chan int) // 注意： channel 必须定义其传递的数据类型 也可以用 var 声明 channel, 如下：
+var ch chan int 以上声明的 channel 都是双向的，意味着可以该 channel 可以发送数据，也可以接收数据。
+“发送”和“接收”是 channel 的两个基本操作。
+ch &lt;- x // channel 接收数据 x  x &lt;- ch // channel 发送数据并赋值给 x  &lt;- ch // channel 发送数据，忽略接受者 channel buffer 上文提到，可以通过 make(chan int) 创建channel，此类 channel 称之为非缓冲通道。事实上 channel 可以定义缓冲大小，如下：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch7/channel/" />
+
+<title>Channel | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Channel</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#channel-简介">channel 简介</a></li>
+        <li><a href="#channel-buffer">channel buffer</a></li>
+        <li><a href="#单向-channel">单向 channel</a></li>
+        <li><a href="#channel-遍历和关闭">channel 遍历和关闭</a></li>
+        <li><a href="#select-语句">select 语句</a></li>
+        <li><a href="#通过-channel-实现同步机制">通过 channel 实现同步机制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h1 id="channel">channel</h1>
+<h3 id="channel-简介">channel 简介</h3>
+<p>goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行通信的重要桥梁。</p>
+<p>使用内建函数 make 可以创建 channel，举例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)  <span style="color:#75715e">// 注意： channel 必须定义其传递的数据类型
+</span></code></pre></div><p>也可以用 var 声明 channel, 如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+</code></pre></div><p>以上声明的 channel 都是双向的，意味着可以该 channel 可以发送数据，也可以接收数据。</p>
+<p>“发送”和“接收”是 channel 的两个基本操作。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">x</span> <span style="color:#75715e">// channel 接收数据 x
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ch</span> <span style="color:#75715e">// channel 发送数据并赋值给 x
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ch</span> <span style="color:#75715e">// channel 发送数据，忽略接受者
+</span></code></pre></div><h3 id="channel-buffer">channel buffer</h3>
+<p>上文提到，可以通过  <code>make(chan int)</code> 创建channel，此类 channel 称之为非缓冲通道。事实上 channel 可以定义缓冲大小，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">chInt</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)       <span style="color:#75715e">// unbuffered channel  非缓冲通道
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">chBool</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>, <span style="color:#ae81ff">0</span>)  <span style="color:#75715e">// unbuffered channel  非缓冲通道
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">chStr</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">2</span>) <span style="color:#75715e">// bufferd channel     缓冲通道
+</span></code></pre></div><p>需要注意的是，程序中必须同时有不同的 goroutine 对非缓冲通道进行发送和接收操作，否则会造成阻塞。</p>
+<p>以下是一个错误的使用示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>)
+	
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;ping&#34;</span>
+	
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span>)
+}
+</code></pre></div><p>这一段代码运行后提示错误： <code>fatal error: all goroutines are asleep - deadlock!</code>。</p>
+<p>因为 main 函数是一个 goroutine, 在这一个 goroutine 中发送了数据给非缓冲通道，但是却没有另外一个 goroutine 从非缓冲通道中里读取数据，
+所以造成了阻塞或者称为死锁。</p>
+<p>在以上代码中添加一个 goroutine 从非缓冲通道中读取数据，程序就可以正常工作。如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>)
+
+	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;ping&#34;</span>
+	}()
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span>)
+}
+</code></pre></div><p>与非缓冲通道不同，缓冲通道可以在同一个 goroutine 内接收容量范围内的数据，即便没有另外的 goroutine 进行读取操作，如下代码可以正常执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">2</span>)
+	
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+	
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+}
+</code></pre></div><h3 id="单向-channel">单向 channel</h3>
+<p>单向通道即限定了该 channel 只能接收或者发送数据，单向通道通常作为函数的参数，如下例所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">receive</span>(<span style="color:#a6e22e">receiver</span> <span style="color:#66d9ef">chan</span><span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#a6e22e">receiver</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">msg</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">sender</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">receiver</span> <span style="color:#66d9ef">chan</span><span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#a6e22e">msg</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">sender</span>
+	<span style="color:#a6e22e">receiver</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">msg</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch1</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">ch2</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">1</span>)
+
+	<span style="color:#a6e22e">receive</span>(<span style="color:#a6e22e">ch1</span>, <span style="color:#e6db74">&#34;pass message&#34;</span>)
+	<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">ch1</span>, <span style="color:#a6e22e">ch2</span>)
+	
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch2</span>)
+}
+</code></pre></div><p>需要注意的是，在变量声明中是不应该出现单向通道的，因为通道本来就是为了通信而生，只能接收或者只能发送数据的通道是没有意义的。
+请看下面这个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">string</span> , <span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;str&#34;</span>
+}
+</code></pre></div><p>这个例子中定义了一个只能用来接收数据的通道，从语法上来看没有错误，但这是一种糟糕的实践。</p>
+<h3 id="channel-遍历和关闭">channel 遍历和关闭</h3>
+<p>close() 函数可以用于关闭 channel，关闭后的 channel 中如果有缓冲数据，依然可以读取，但是无法再发送数据给已经关闭的channel。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">10</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span>
+	}
+	close(<span style="color:#a6e22e">ch</span>)
+
+	<span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">ch</span> {
+		<span style="color:#a6e22e">res</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">v</span>
+	}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">res</span>)
+}
+</code></pre></div><h3 id="select-语句">select 语句</h3>
+<p>select 专门用于通道发送和接收操作，看起来和 switch 很相似，但是进行选择和判断的方法完全不同。</p>
+<p>在下述例子中，通过 select 的使用，保证了 worker 中的事务可以执行完毕后才退出 main 函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">strWorker</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;do something with strWorker...&#34;</span>)
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;str&#34;</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">intWorker</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;do something with intWorker...&#34;</span>)
+	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">chStr</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>)
+	<span style="color:#a6e22e">chInt</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+
+	<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">strWorker</span>(<span style="color:#a6e22e">chStr</span>)
+	<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">intWorker</span>(<span style="color:#a6e22e">chInt</span>)
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">select</span> {
+		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chStr</span>:
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;get value from strWorker&#34;</span>)
+
+		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chInt</span>:
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;get value from intWorker&#34;</span>)
+
+		}
+	}
+}
+</code></pre></div><blockquote>
+<p>思考： 如果上述例子中，没有这个 select ，那么 worker 函数是否有机会执行？</p>
+</blockquote>
+<h3 id="通过-channel-实现同步机制">通过 channel 实现同步机制</h3>
+<p>一个经典的例子如下，main 函数中起了一个 goroutine，通过非缓冲队列的使用，能够保证在 goroutine 执行结束之前 main 函数不会提前退出。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">worker</span>(<span style="color:#a6e22e">done</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>){
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;start working...&#34;</span>)
+	<span style="color:#a6e22e">done</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">true</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;end working...&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">done</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>, <span style="color:#ae81ff">1</span>)
+
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">worker</span>(<span style="color:#a6e22e">done</span>)
+
+    <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">done</span>
+}
+</code></pre></div><p>思考：如果把上述例子中的 <code>&lt;-done</code> 注释掉，运行结果会如何？</p>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#channel-简介">channel 简介</a></li>
+        <li><a href="#channel-buffer">channel buffer</a></li>
+        <li><a href="#单向-channel">单向 channel</a></li>
+        <li><a href="#channel-遍历和关闭">channel 遍历和关闭</a></li>
+        <li><a href="#select-语句">select 语句</a></li>
+        <li><a href="#通过-channel-实现同步机制">通过 channel 实现同步机制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

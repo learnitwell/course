@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on IT小课</title>
+    <link>http://example.org/tags/</link>
+    <description>Recent content in Tags on IT小课</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 May 2015 23:41:37 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>weiphp</title>
+      <link>http://example.org/tags/weiphp/</link>
+      <pubDate>Sat, 23 May 2015 23:41:37 +0000</pubDate>
+      
+      <guid>http://example.org/tags/weiphp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>weiphp插件开发</title>
+      <link>http://example.org/tags/weiphp%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Sat, 23 May 2015 23:41:37 +0000</pubDate>
+      
+      <guid>http://example.org/tags/weiphp%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网页采集技术</title>
+      <link>http://example.org/tags/%E7%BD%91%E9%A1%B5%E9%87%87%E9%9B%86%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Sun, 12 Apr 2015 23:52:02 +0000</pubDate>
+      
+      <guid>http://example.org/tags/%E7%BD%91%E9%A1%B5%E9%87%87%E9%9B%86%E6%8A%80%E6%9C%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>weiphp插件开发教程</title>
+      <link>http://example.org/tags/weiphp%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Fri, 09 Jan 2015 00:39:53 +0000</pubDate>
+      
+      <guid>http://example.org/tags/weiphp%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>成语接龙</title>
+      <link>http://example.org/tags/%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99/</link>
+      <pubDate>Fri, 09 Jan 2015 00:39:53 +0000</pubDate>
+      
+      <guid>http://example.org/tags/%E6%88%90%E8%AF%AD%E6%8E%A5%E9%BE%99/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>development</title>
+      <link>http://example.org/tags/development/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>http://example.org/tags/go/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://example.org/tags/golang/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>http://example.org/tags/hugo/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>templates</title>
+      <link>http://example.org/tags/templates/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>themes</title>
+      <link>http://example.org/tags/themes/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/tags/themes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

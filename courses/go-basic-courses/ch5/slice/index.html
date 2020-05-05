@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="切片 切片组成要素：  指针：指向底层数组 长度：切片中元素的长度，不能大于容量 容量：指针所指向的底层数组的总容量  常见初始化方式  使用 make 初始化  slice := make([]int, 5) // 初始化长度和容量都为 5 的切片 slice := make([]int, 5, 10) // 初始化长度为 5, 容量为 10 的切片  使用简短定义  slice := []int{1, 2, 3, 4, 5}  使用数组来初始化切片  arr := [5]int{1, 2, 3, 4, 5} slice := arr[0:3] // 左闭右开区间，最终切片为 [1,2,3]  使用切片来初始化切片  sliceA := []int{1, 2, 3, 4, 5} sliceB := sliceA[0:3] // 左闭右开区间，sliceB 最终为 [1,2,3] 长度和容量 package main import ( &#34;fmt&#34; ) func main() { slice := []int{1, 2, 3, 4, 5} fmt.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="切片 切片组成要素：  指针：指向底层数组 长度：切片中元素的长度，不能大于容量 容量：指针所指向的底层数组的总容量  常见初始化方式  使用 make 初始化  slice := make([]int, 5) // 初始化长度和容量都为 5 的切片 slice := make([]int, 5, 10) // 初始化长度为 5, 容量为 10 的切片  使用简短定义  slice := []int{1, 2, 3, 4, 5}  使用数组来初始化切片  arr := [5]int{1, 2, 3, 4, 5} slice := arr[0:3] // 左闭右开区间，最终切片为 [1,2,3]  使用切片来初始化切片  sliceA := []int{1, 2, 3, 4, 5} sliceB := sliceA[0:3] // 左闭右开区间，sliceB 最终为 [1,2,3] 长度和容量 package main import ( &#34;fmt&#34; ) func main() { slice := []int{1, 2, 3, 4, 5} fmt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch5/slice/" />
+
+<title>Slice | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Slice</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#切片">切片</a></li>
+        <li><a href="#小练习">小练习</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h3 id="切片">切片</h3>
+<h4 id="切片组成要素">切片组成要素：</h4>
+<ul>
+<li>指针：指向底层数组</li>
+<li>长度：切片中元素的长度，不能大于容量</li>
+<li>容量：指针所指向的底层数组的总容量</li>
+</ul>
+<h4 id="常见初始化方式">常见初始化方式</h4>
+<ul>
+<li>使用 <code>make</code> 初始化</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">5</span>)     <span style="color:#75715e">// 初始化长度和容量都为 5 的切片
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>) <span style="color:#75715e">// 初始化长度为 5, 容量为 10 的切片
+</span></code></pre></div><ul>
+<li>使用简短定义</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+</code></pre></div><ul>
+<li>使用数组来初始化切片</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+<span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>] <span style="color:#75715e">// 左闭右开区间，最终切片为 [1,2,3]
+</span></code></pre></div><ul>
+<li>使用切片来初始化切片</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">sliceA</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+<span style="color:#a6e22e">sliceB</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">sliceA</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>] <span style="color:#75715e">// 左闭右开区间，sliceB 最终为 [1,2,3]
+</span></code></pre></div><h4 id="长度和容量">长度和容量</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;len: &#34;</span>, len(<span style="color:#a6e22e">slice</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;cap: &#34;</span>, cap(<span style="color:#a6e22e">slice</span>))
+
+	<span style="color:#75715e">//改变切片长度
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">slice</span> = append(<span style="color:#a6e22e">slice</span>, <span style="color:#ae81ff">6</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;after append operation: &#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;len: &#34;</span>, len(<span style="color:#a6e22e">slice</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;cap: &#34;</span>, cap(<span style="color:#a6e22e">slice</span>)) <span style="color:#75715e">//注意，底层数组容量不够时，会重新分配数组空间，通常为两倍
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>以上代码，预期输出如下：</p>
+<pre><code>len:  5
+cap:  5
+after append operation:
+len:  6
+cap:  12
+</code></pre><h4 id="注意点">注意点</h4>
+<ul>
+<li>多个切片共享一个底层数组的情况</li>
+</ul>
+<blockquote>
+<p>对底层数组的修改，将影响上层多个切片的值</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+	<span style="color:#a6e22e">newSlice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">slice</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>]
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;before modifying underlying array:&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;slice: &#34;</span>, <span style="color:#a6e22e">slice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;newSlice: &#34;</span>, <span style="color:#a6e22e">newSlice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>()
+
+	<span style="color:#a6e22e">newSlice</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">6</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;after modifying underlying array:&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;slice: &#34;</span>, <span style="color:#a6e22e">slice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;newSlice: &#34;</span>, <span style="color:#a6e22e">newSlice</span>)
+}
+</code></pre></div><p>以上代码预期输出如下：</p>
+<pre><code>before modify underlying array:
+slice:  [1 2 3 4 5]
+newSlice:  [1 2 3]
+
+after modify underlying array:
+slice:  [6 2 3 4 5]
+newSlice:  [6 2 3]
+</code></pre><ul>
+<li>使用 <code>copy</code> 方法可以避免共享同一个底层数组</li>
+</ul>
+<blockquote>
+<p>示例代码如下：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+	<span style="color:#a6e22e">newSlice</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">slice</span>))
+	copy(<span style="color:#a6e22e">newSlice</span>, <span style="color:#a6e22e">slice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;before modifying underlying array:&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;slice: &#34;</span>, <span style="color:#a6e22e">slice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;newSlice: &#34;</span>, <span style="color:#a6e22e">newSlice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>()
+
+	<span style="color:#a6e22e">newSlice</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">6</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;after modifying underlying array:&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;slice: &#34;</span>, <span style="color:#a6e22e">slice</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;newSlice: &#34;</span>, <span style="color:#a6e22e">newSlice</span>)
+}
+</code></pre></div><p>以上代码预期输出如下：</p>
+<pre><code>before modifying underlying array:
+slice:  [1 2 3 4 5]
+newSlice:  [1 2 3 4 5]
+
+after modifying underlying array:
+slice:  [1 2 3 4 5]
+newSlice:  [6 2 3 4 5]
+</code></pre><h3 id="小练习">小练习</h3>
+<p>如何使用 <code>copy</code> 函数进行切片部分拷贝？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 假设切片 slice 如下:
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+
+<span style="color:#75715e">// 如何使用 copy 创建切片 newSlice, 该切片值为 [2, 3, 4]
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">newSlice</span> = copy(<span style="color:#960050;background-color:#1e0010">?</span>,<span style="color:#960050;background-color:#1e0010">?</span>)
+</code></pre></div></article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#切片">切片</a></li>
+        <li><a href="#小练习">小练习</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

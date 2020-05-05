@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go 零基础编程入门教程 on IT小课</title>
+    <link>http://example.org/courses/go-basic-courses/</link>
+    <description>Recent content in Go 零基础编程入门教程 on IT小课</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/courses/go-basic-courses/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch1/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch1/readme/</guid>
+      <description>Go 安装和配置 写在前面  教学 Go 版本 1.9.x 教学使用 GOPATH 为 ~/importgo  下载并安装  下载安装对应版本 https://golang.org/dl/ 查看 go 安装目录 /usr/local/go (Windows 下默认安装到 c:\Go) 运行 go version 命令检查是否安装正确    推荐大家使用二进制默认安装方式
+  项目环境变量 本课程命名为 importgo, 故添加一个 IMPORTGOROOT 的环境变量进行所有的代码开发和演示，具体配置如下：
+$ vi ~/.profile export IMPORTGOROOT=$HOME/importgo export GOPATH=$IMPORTGOROOT # 覆盖 GOPATH 环境变为 importgo export PATH=$IMPORTGOROOT/bin:$PATH # 当我们配置完毕后，可以执行 source ~/.profile 更新系统环境变量。
+编写我的第一个 Go 程序 首先需要在 GOPATH 文件夹下创建一个 src 目录用于存放我们的源代码。
+$ mkdir -p $GOPATH/src 然后我们在 src 目录下面新建 hello/hello.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/http/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/socket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/socket/</guid>
+      <description>Socket Socket是网络编程的一个抽象概念，通常我们用一个 Socket 表示 “打开了一个网络连接”，在 Go 中主要使用 net 包。
+使用 net 的 func Dial(network, address string) (Conn, error) 函数就可轻松建立一个 Socket 连接。Socket 创建成功后，我们可以对其进行 I/O 操作，最后不要记得对其进行关闭操作。
+本章将从 TCP， UDP， Unix 入手，带领大家全面了解 Socket 在 Go 中的应用。
+基本知识 Socket 连接又分为客户端和服务端，如图：
+核心步骤包括：
+ 创建连接:  Dial(network, address string) (Conn, error) 注意, 这里的 network 可以为:
+&amp;#34;tcp&amp;#34;, &amp;#34;tcp4&amp;#34;, &amp;#34;tcp6&amp;#34; &amp;#34;udp&amp;#34;, &amp;#34;udp4&amp;#34;, &amp;#34;udp6&amp;#34; &amp;#34;ip&amp;#34;, &amp;#34;ip4&amp;#34;, &amp;#34;ip6&amp;#34; &amp;#34;unix&amp;#34;, &amp;#34;unixgram&amp;#34;, &amp;#34;unixpacket&amp;#34;  通过连接发送数据:  conn.Write([]byte(&amp;quot;GET / HTTP/1.0\r\n\r\n&amp;quot;))  通过连接读取数据：  buf := make([]byte, 256) conn.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch10/websocket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch10/websocket/</guid>
+      <description>WebSocket </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/mongodb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/mysql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch11/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch11/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/readme/</guid>
+      <description>项目工程  包 工具 单元测试  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch12/tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch12/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch2/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch2/readme/</guid>
+      <description>为什么选择 VSCode?  微软官方出品，更新迭代快 强大的插件：代码跳转，自动格式化，错误检测等  下载安装   登录 vscode 官网: https://code.visualstudio.com
+  根据操作系统选择对应包下载
+  将 code 命令添加到系统 PATH 中  效果：在终端输入 code &amp;lt;filename/foldername&amp;gt; 就能用 vscode 打开文件或文件夹
+   以 mac 为例：在 vscode 中使用快捷键 command + shif + p,
+  输入 shell command，选择 Shell Command:Install &#39;code&#39; command in PATH，如下图：
+  安装 Go 插件   登录 vscode 官网 Extensions模块：https://marketplace.visualstudio.com/VSCode
+  搜索 go 插件</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/const/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/const/</guid>
+      <description>常量定义 常量是指值不能改变的定义，它必须满足如下规则：
+ 定义的时候，必须指定值 指定的值类型主要有三类： 布尔，数字，字符串， 其中数字类型包含（rune, integer, floating-point, complex), 它们都属于基本数据类型。 不能使用 :=  例子：
+const a = 64 // 定义常量值为 64 的值 const ( b = 4 c = 0.1 ) </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/identifiers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/identifiers/</guid>
+      <description>命名规范 Go 语言中，任何标识符（变量，常量，函数，自定义类型等）都应该满足以下规律：
+ 连续的 字符 (unicode_letter | _ .) 或 数字(&amp;ldquo;0&amp;rdquo; … &amp;ldquo;9&amp;rdquo;) 组成。 以字符或下划线开头。 不能和 Go 关键字冲突。  Go 关键字: break default func interface select case defer go map struct chan else goto package switch const fallthrough if range type continue for import return var 举例说明： foo #合法 foo1 #合法 _foo #合法 变量 #合法 变量1 #合法 _变量 合法 1foo #不合法 1 #不合法 type #不合法 go #不合法 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/readme/</guid>
+      <description>基础知识  命名规范 变量 常量  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch3/var/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch3/var/</guid>
+      <description>变量声明 类型声明基本语法 在 Go 语言中，采用的是后置类型的声明方式，形如：
+&amp;lt;命名&amp;gt; &amp;lt;类型&amp;gt; 例如：
+x int // 定义 x 为整数类型 这么定义不是为了凸显与众不同，而是为了让声明更加清晰易懂，具体可以参考文章gos-declaration-syntax
+变量声明 在 Go 语言中通常我们使用关键字 var 来声明变量，例如
+var x int // 表示声明一个名为 x 的整数变量 var b int = 1 // 表示声明一个名为 b 的整数变量，并且附上初始值为 1 var b = 1 如果有多个变量同时声明，我们可以采用 var 加括号批量声明的方式:
+var ( a, b int // 同时声明 a, b 的整数 c float64 ) 简短声明方式 变量在声明的时候如果有初始值，我们可以使用 := 的简短声明方式：
+a := 1 // 声明 a 为 1 的整数 b := int64(1) // 声明 b 为 1 的 64 位整数 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch4/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch4/readme/</guid>
+      <description>基本数据类型 Go 语言中的基本数据类型包含：
+bool	the set of boolean (true, false) uint8	the set of all unsigned 8-bit integers (0 to 255) uint16	the set of all unsigned 16-bit integers (0 to 65535) uint32	the set of all unsigned 32-bit integers (0 to 4294967295) uint64	the set of all unsigned 64-bit integers (0 to 18446744073709551615) int8	the set of all signed 8-bit integers (-128 to 127) int16	the set of all signed 16-bit integers (-32768 to 32767) int32	the set of all signed 32-bit integers (-2147483648 to 2147483647) int64	the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807) float32	the set of all IEEE-754 32-bit floating-point numbers float64	the set of all IEEE-754 64-bit floating-point numbers complex64	the set of all complex numbers with float32 real and imaginary parts complex128	the set of all complex numbers with float64 real and imaginary parts byte	alias for uint8 rune	alias for int32 uint	either 32 or 64 bits int	same size as uint uintptr	an unsigned integer large enough to store the uninterpreted bits of a pointer value string	the set of string value (eg: &amp;quot;hi&amp;quot;) 我们可以将基本类型分为三大类：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/array/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/array/</guid>
+      <description>数组  定义：由若干相同类型的元素组成的序列 数组的长度是固定的，声明后无法改变 数组的长度是数组类型的一部分，eg：元素类型相同但是长度不同的两个数组是不同类型的 需要严格控制程序所使用内存时，数组十分有用，因为其长度固定，避免了内存二次分配操作  示例 package main import &amp;#34;fmt&amp;#34; func main() { // 定义长度为 5 的数组 	var arr1 [5]int for i := 0; i &amp;lt; 5; i++ { arr1[i] = i } printHelper(&amp;#34;arr1&amp;#34;, arr1) // 以下赋值会报类型不匹配错误，因为数组长度是数组类型的一部分 	// arr1 = [3]int{1, 2, 3} 	arr1 = [5]int{2, 3, 4, 5, 6} // 长度和元素类型都相同，可以正确赋值  // 简写模式，在定义的同时给出了赋值 	arr2 := [5]int{0, 1, 2, 3, 4} printHelper(&amp;#34;arr2&amp;#34;, arr2) // 数组元素类型相同并且数组长度相等的情况下，数组可以进行比较 	fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/custom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/custom/</guid>
+      <description>自定义类型 前面我们已经学习了不少基础和高级数据类型，在 Go 语言里面，我们还可以通过自定义类型来表示一些特殊的数据结构和业务逻辑。
+使用关键字 type 来声明：
+type NAME TYPE 声明语法  单次声明  type City string  批量声明  type ( B0 = int8 B1 = int16 B2 = int32 B3 = int64 ) type ( A0 int8 A1 int16 A2 int32 A3 int64 ) 简单示例 package main import &amp;quot;fmt&amp;quot; type City string func main() { city := City(&amp;quot;上海&amp;quot;) fmt.Println(city) } 基本操作 package main import &amp;quot;fmt&amp;quot; type City string type Age int func main() { city := City(&amp;quot;北京&amp;quot;) fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/function/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/function/</guid>
+      <description>函数  函数是语句序列的集合，能够将一个大的工作分解为小的任务，对外隐藏了实现细节
+  函数组成  函数名 参数列表(parameter-list) 返回值(result-list) 函数体(body)    func name(parameter-list) (result-list){ body }  单返回值函数  func plus(a, b int) (res int){ return a + b }  多返回值函数  func multi()(string, int){ return &amp;#34;name&amp;#34;, 18 }  命名返回值  // 被命名的返回参数的值为该类型的默认零值 // 该例子中 name 默认初始化为空字符串，height 默认初始化为 0 func namedReturnValue()(name string, height int){ name = &amp;#34;xiaoming&amp;#34; height = 180 return }  参数可变函数  func sum(nums .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/interface/</guid>
+      <description>接口 接口类型是一种抽象类型，是方法的集合，其他类型实现了这些方法就是实现了这个接口。
+/* 定义接口 */ type interface_name interface { method_name1 [return_type] method_name2 [return_type] method_name3 [return_type] ... method_namen [return_type] } 简单示例：打印不同几何图形的面积和周长 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;math&amp;#34; ) type geometry interface { area() float32 perim() float32 } type rect struct { len, wid float32 } func (r rect) area() float32 { return r.len * r.wid } func (r rect) perim() float32 { return 2 * (r.len + r.wid) } type circle struct { radius float32 } func (c circle) area() float32 { return math.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/map/</guid>
+      <description>Map 在 Go 语言里面，map 一种无序的键值对, 它是数据结构 hash 表的一种实现方式，类似 Python 中的字典。
+语法 使用关键字 map 来声明形如：
+map[KeyType]ValueType 注意点：
+ 必须指定 key, value 的类型，插入的纪录类型必须匹配。 key 具有唯一性，插入纪录的 key 不能重复。 KeyType 可以为基础数据类型（例如 bool, 数字类型，字符串）, 不能为数组，切片，map，它的取值必须是能够使用 == 进行比较。 ValueType 可以为任意类型。 无序性。 线程不安全, 一个 goroutine 在对 map 进行写的时候，另外的 goroutine 不能进行读和写操作，Go 1.6 版本以后会抛出 runtime 错误信息。  声明和初始化  使用 var 声明  var cMap map[string]int // 只定义, 此时 cMap 为 nil fmt.Println(cMap == nil) cMap[&amp;#34;北京&amp;#34;] = 1 // 报错，因为 cMap 为 nil  使用 make  cMap := make(map[string]int) cMap[&amp;#34;北京&amp;#34;] = 1 // 指定初始容量 cMap = make(map[string]int, 100) cMap[&amp;#34;北京&amp;#34;] = 1 说明：在使用 make 初始化 map 的时候，可以指定初始容量，这在能预估 map key 数量的情况下，减少动态分配的次数，从而提升性能。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/method/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/method/</guid>
+      <description>方法 方法主要源于 OOP 语言，在传统面向对象语言中 (例如 C++), 我们会用一个“类”来封装属于自己的数据和函数，这些类的函数就叫做方法。
+虽然 Go 不是经典意义上的面向对象语言，但是我们可以在一些接收者（自定义类型，结构体）上定义函数，同理这些接收者的函数在 Go 里面也叫做方法。
+声明 方法（method）的声明和函数很相似, 只不过它必须指定接收者：
+func (t T) F() {} 注意：
+ 接收者的类型只能为用关键字 type 定义的类型，例如自定义类型，结构体。 同一个接收者的方法名不能重复 (没有重载)，如果是结构体，方法名还不能和字段名重复。 值作为接收者无法修改其值，如果有更改需求，需要使用指针类型。  简单例子 package main type T struct{} func (t T) F() {} func main() { t := T{} t.F() } 接收者类型不是任意类型 例如：
+package main func (t int64) F() {} func main() { t := int64(10) t.F() } 当运行以下代码会得到 cannot define new methods on non-local type int64 类似错误信息，我们可以使用自定义类型来解决：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/readme/</guid>
+      <description>高级数据类型  数组 切片 Map 自定义类型 结构体 函数 方法 接口  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/slice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/slice/</guid>
+      <description>切片 切片组成要素：  指针：指向底层数组 长度：切片中元素的长度，不能大于容量 容量：指针所指向的底层数组的总容量  常见初始化方式  使用 make 初始化  slice := make([]int, 5) // 初始化长度和容量都为 5 的切片 slice := make([]int, 5, 10) // 初始化长度为 5, 容量为 10 的切片  使用简短定义  slice := []int{1, 2, 3, 4, 5}  使用数组来初始化切片  arr := [5]int{1, 2, 3, 4, 5} slice := arr[0:3] // 左闭右开区间，最终切片为 [1,2,3]  使用切片来初始化切片  sliceA := []int{1, 2, 3, 4, 5} sliceB := sliceA[0:3] // 左闭右开区间，sliceB 最终为 [1,2,3] 长度和容量 package main import ( &amp;#34;fmt&amp;#34; ) func main() { slice := []int{1, 2, 3, 4, 5} fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch5/struct/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch5/struct/</guid>
+      <description>结构体 数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。
+ 结构体是由零个或多个任意类型的值聚合成的实体
+ 关键字 type 和 struct 用来定义结构体：
+type StructName struct{ FieldName type } 简单示例：定义一个学生结构体 package main import &amp;#34;fmt&amp;#34; type Student struct { Age int Name string } func main() { stu := Student{ Age: 18, Name: &amp;#34;name&amp;#34;, } fmt.Println(stu) // 在赋值的时候，字段名可以忽略 	fmt.Println(Student{20, &amp;#34;new name&amp;#34;}) return }  通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：
+ type Student struct{ Age int Name, Address string }  一个结构体中的字段名是唯一的，例如一下代码，出现了两个 Name 字段，是错误的：
+ type Student struct{ Name string Name string }  结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/control/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/control/</guid>
+      <description>#分支循环
+在编写 Go 程序的时候，我们不仅会用前面学到的数据结构来存储数据，还会用到 if、switch、for 来进行条件判断和流程控制，今天我们就来一起学习下它们。
+if if 主要用于条件判断，语法为：
+if 条件 { # 业务代码 } 先看一个简单例子:
+package main import &amp;quot;fmt&amp;quot; func main() { age := 7 if age &amp;gt; 6 { fmt.Println(&amp;quot;It&#39;s primary school&amp;quot;) } } 我们可以在条件中使用 &amp;amp; 或 || 来进行组合判断：
+package main import &amp;quot;fmt&amp;quot; func main() { age := 7 if age &amp;gt; 6 &amp;amp;&amp;amp; age &amp;lt;= 12 { fmt.Println(&amp;quot;It&#39;s primary school&amp;quot;) } } 我们还可以使用 if..else if..else 来实现多分支的条件判断:
+package main import &amp;quot;fmt&amp;quot; func main() { age := 13 if age &amp;gt; 6 &amp;amp;&amp;amp; age &amp;lt;= 12 { fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/error/</guid>
+      <description>异常处理 defer 上一节课介绍了常见的流程控制，这一节课将介绍一个 Go 特有的流程控制语句： defer
+defer 通常用于延迟调用指定的函数。例如：
+func outerFunc() { defer fmt.Printf(&amp;#34; World!\n&amp;#34;) fmt.Print(&amp;#34;Hello&amp;#34;) } 上例最终输出的结果是： &amp;ldquo;Hello World!&amp;quot;.
+这是因为：defer 会在 outerFunc 退出之前执行打印操作，因此被 defer 调用的函数也称为“延迟函数”。
+defer 常用场景 defer语句经常被用于处理成对的操作，如打开和关闭，连接和断开连接，加锁和释放锁。恰当使用 defer 能够保证资源正确释放。 以下是几个例子：
+// 使用 defer 关闭 http 请求响应体的 Body func closeBody(url string) error { resp, err := http.Get(url) defer resp.Body.Close() // ... do more stuff ...  return err } // 使用 defer 关闭文件句柄 func closeFile(filename string) error{ f, err := os.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch6/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch6/readme/</guid>
+      <description>流程控制  分支循环 异常处理  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/atomic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/atomic/</guid>
+      <description>原子操作  本文讲解 golang 中 sync.atomic 的常见操作
+ atomic 提供的原子操作能够确保任一时刻只有一个goroutine对变量进行操作，善用 atomic 能够避免程序中出现大量的锁操作。
+atomic常见操作有：
+ 增减 载入 比较并交换 交换 存储  下面将分别介绍这些操作。
+增减操作 atomic 包中提供了如下以Add为前缀的增减操作:
+ func AddInt32(addr *int32, delta int32) (new int32) func AddInt64(addr *int64, delta int64) (new int64) func AddUint32(addr *uint32, delta uint32) (new uint32) func AddUint64(addr *uint64, delta uint64) (new uint64) func AddUintptr(addr *uintptr, delta uintptr) (new uintptr)   需要注意的是，第一个参数必须是指针类型的值，通过指针变量可以获取被操作数在内存中的地址，确保同一时间只有一个goroutine能够进行操作。
+ 先来看一个例子： 分别用“锁”和原子操作来实现多个 goroutine 对同一个变量进行累加操作。
+使用锁实现 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { var ( mux sync.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/channel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/channel/</guid>
+      <description>channel channel 简介 goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行通信的重要桥梁。
+使用内建函数 make 可以创建 channel，举例如下：
+ch := make(chan int) // 注意： channel 必须定义其传递的数据类型 也可以用 var 声明 channel, 如下：
+var ch chan int 以上声明的 channel 都是双向的，意味着可以该 channel 可以发送数据，也可以接收数据。
+“发送”和“接收”是 channel 的两个基本操作。
+ch &amp;lt;- x // channel 接收数据 x  x &amp;lt;- ch // channel 发送数据并赋值给 x  &amp;lt;- ch // channel 发送数据，忽略接受者 channel buffer 上文提到，可以通过 make(chan int) 创建channel，此类 channel 称之为非缓冲通道。事实上 channel 可以定义缓冲大小，如下：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/goroutine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/goroutine/</guid>
+      <description>Goroutine （并发） 并发指的是多个任务被（一个）cpu 轮流切换执行，在 Go 语言里面主要用 goroutine （协程）来实现并发，类似于其他语言中的线程（绿色线程）。
+语法 go f(x, y, z) 具体例子 首先我们看一个例子：
+package main import ( &amp;quot;log&amp;quot; &amp;quot;time&amp;quot; ) func doSomething(id int) { log.Printf(&amp;quot;before do job:(%d) \n&amp;quot;, id) time.Sleep(3 * time.Second) log.Printf(&amp;quot;after do job:(%d) \n&amp;quot;, id) } func main() { doSomething(1) doSomething(2) doSomething(3) } 输出结果为：
+2018/03/16 12:13:20 before do job:(1) 2018/03/16 12:13:23 after do job:(1) 2018/03/16 12:13:23 before do job:(2) 2018/03/16 12:13:26 after do job:(2) 2018/03/16 12:13:26 before do job:(3) 2018/03/16 12:13:29 after do job:(3) 可以看到执行完结果总共耗时 9 秒，每个任务是阻塞的。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/lock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/lock/</guid>
+      <description>锁 在前面我们已经讲了如何使用 channel 在多个 goroutine 之间进行通信，其实对于并发还有一种较为常用通信方式，那就是共享内存。
+首先我们来看一个例子：
+package main import ( &amp;quot;log&amp;quot; &amp;quot;time&amp;quot; ) var name string func main() { name = &amp;quot;小明&amp;quot; go printName() go printName() time.Sleep(time.Second) name = &amp;quot;小红&amp;quot; go printName() go printName() time.Sleep(time.Second) } func printName() { log.Println(&amp;quot;name is&amp;quot;, name) } 运行程序，可以得到类似输出结果：
+2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:29 name is 小红 2018/03/23 14:53:29 name is 小红 可以看到在两个 goroutine 中我们都可以访问 name 这个变量，当修改它后，在不同的 goroutine 中都可以同时获取到最新的值。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch7/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch7/readme/</guid>
+      <description>并发  Goroutine Channel 锁的使用 原子操作  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/readfile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/readfile/</guid>
+      <description>读文件 在日常开发中我们少不了对文件读取，今天我们就从三部分来讲解：全量读，带缓冲区读，任意位置读。
+全量读 我们先来看看一个简单的例子：
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; ) func main() { dat, err := ioutil.ReadFile(&amp;quot;./main.go&amp;quot;) fmt.Println(err) fmt.Println(string(dat)) } 运行程序可以打印整个 main.go 文件内容，如果我们将 ./main.go 修改为 ./main.go1，程序将出现 no such file or directory 的错误， 所以在文件读取的时候一定要注意检查 err。
+带缓冲区读 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; ) func main() { f, _ := os.Open(&amp;quot;./main.go&amp;quot;) defer f.Close() buf := make([]byte, 16) f.Read(buf) fmt.Println(string(buf)) } 运行程序会输出 main.go 的前 16 个字节内容，具体为：
+package main im 任意位置读 有些时候我们想在一个文件特定地方读取特定长度的内容，那我们有什么方法可以使用呢？
+第一种： f.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch8/writefile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch8/writefile/</guid>
+      <description>写文件 上一节课介绍了 Go 读文件的常用操作，本章节将介绍 Go 写文件的相关操作，包括：
+ 创建文件 在文件指定位置写入内容 通过 Buffered Writter 写文件  创建文件  使用 os.Create(name string) 方法创建文件 使用 os.Stat(name string) 方法获取文件信息  简单示例：
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;os&amp;#34; ) func checkErr(err error) { if err != nil { panic(err) } } func main() { path := &amp;#34;test.txt&amp;#34; newFile, err := os.Create(path) checkErr(err) defer newFile.Close() fileInfo, err := os.Stat(path) if err != nil { if os.IsNotExist(err) { fmt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/json/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/json/</guid>
+      <description>JSON 序列化和反序列化 上一节我们介绍了 xml 的使用，其实对于数据的序列化和反序列化还有一种更为常见的方式，那就是 JSON，尤其是在 http, rpc 的微服务调用中。
+基础语法 在 Go 中我们主要使用官方的 encoding/json 包对 JSON 数据进行序列化和反序列化，主要使用方法有：
+ 序列化:  func Marshal(v interface{}) ([]byte, error)  反序列化：  func Unmarshal(data []byte, v interface{}) error 简单例子：
+package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { var ( data = `1` value int ) err1 := json.Unmarshal([]byte(data), &amp;amp;value) fmt.Println(&amp;#34;Unmarshal error is:&amp;#34;, err1) fmt.Printf(&amp;#34;Unmarshal value is: %T, %d \n&amp;#34;, value, value) value2, err2 := json.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/readme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/ch9/xml/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/ch9/xml/</guid>
+      <description>xml 序列化和反序列化 这一节课将介绍 xml 的序列化和反序列化。
+首先看下 xml 标签常见用法：
+ xml:&amp;quot;xxx,omitempty&amp;quot; 代表如果这个字段值为空，则序列化时忽略该字段 xml:&amp;quot;xxx,attr&amp;quot; 代表该字段为 xml 标签的属性说明 xml:&amp;quot;-&amp;quot; 代表序列化时忽略该字段 xml:&amp;quot;a&amp;gt;b&amp;gt;c&amp;quot; 代表 xml 标签嵌套模式  以下例子，演示了
+ xml 序列化，包含 xml 标签的不同用法 写 xml 文件 读 xml 文件 xml 反序列化  package main import ( &amp;#34;encoding/xml&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; ) type Student struct { Name string `xml:&amp;#34;name&amp;#34;` // xml 标签 	Address string `xml:&amp;#34;address,omitempty&amp;#34;` // 如果该字段为空就过滤掉 	Hobby string `xml:&amp;#34;-&amp;#34;` // 进行 xml 序列化的时候忽略该字段 	Father string `xml:&amp;#34;parent&amp;gt;father&amp;#34;` // xml 标签嵌套模式 	Mother string `xml:&amp;#34;parent&amp;gt;mother&amp;#34;` // xml 标签嵌套模式 	Note string `xml:&amp;#34;note,attr&amp;#34;` // xml 标签属性 } func checkErr(err error) { if err !</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/readme/</guid>
+      <description>Go 零基础编程入门教程 制作、分享高质量 Go 入门教程，包括：
+ 视频  B 站主页: https://space.bilibili.com/276273794/#/   GitBook 书籍: https://www.gitbook.com/book/songjiayang/go-basic-courses/details GitHub 源码: https://github.com/binatify/importgo 欢迎加入 QQ 群：694650181 ，加入请备注：“Go 零基础入门教程”  作者   宋佳洋
+ 微博 github 个人公众号      薛锦
+ 微博 github 个人公众号    </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/courses/go-basic-courses/summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/courses/go-basic-courses/summary/</guid>
+      <description>Summary   Go 零基础编程入门教程
+  Go 安装和配置
+  Go 开发利器：VSCode
+  基础知识
+ 命名规范 变量 常量    基础数据类型
+  高级类型
+ 数组 切片 Map 自定义类型 结构体 函数 方法 接口    流程控制
+ 分支循环 异常处理    并发
+ Goroutine Channel 锁的使用 原子操作    文件操作
+ 读文件 写文件    序列化和反序列化
+ xml json    网络</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="结构体 数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。
+ 结构体是由零个或多个任意类型的值聚合成的实体
+ 关键字 type 和 struct 用来定义结构体：
+type StructName struct{ FieldName type } 简单示例：定义一个学生结构体 package main import &#34;fmt&#34; type Student struct { Age int Name string } func main() { stu := Student{ Age: 18, Name: &#34;name&#34;, } fmt.Println(stu) // 在赋值的时候，字段名可以忽略 	fmt.Println(Student{20, &#34;new name&#34;}) return }  通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：
+ type Student struct{ Age int Name, Address string }  一个结构体中的字段名是唯一的，例如一下代码，出现了两个 Name 字段，是错误的：
+ type Student struct{ Name string Name string }  结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="结构体 数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。
+ 结构体是由零个或多个任意类型的值聚合成的实体
+ 关键字 type 和 struct 用来定义结构体：
+type StructName struct{ FieldName type } 简单示例：定义一个学生结构体 package main import &#34;fmt&#34; type Student struct { Age int Name string } func main() { stu := Student{ Age: 18, Name: &#34;name&#34;, } fmt.Println(stu) // 在赋值的时候，字段名可以忽略 	fmt.Println(Student{20, &#34;new name&#34;}) return }  通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：
+ type Student struct{ Age int Name, Address string }  一个结构体中的字段名是唯一的，例如一下代码，出现了两个 Name 字段，是错误的：
+ type Student struct{ Name string Name string }  结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch5/struct/" />
+
+<title>Struct | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Struct</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#结构体">结构体</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h3 id="结构体">结构体</h3>
+<p>数组、切片和 Map 可以用来表示同一种数据类型的集合，但是当我们要表示不同数据类型的集合时就需要用到结构体。</p>
+<blockquote>
+<p>结构体是由零个或多个任意类型的值聚合成的实体</p>
+</blockquote>
+<p>关键字 <code>type</code> 和 <code>struct</code> 用来定义结构体：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StructName</span> <span style="color:#66d9ef">struct</span>{
+    <span style="color:#a6e22e">FieldName</span> <span style="color:#66d9ef">type</span>
+}
+</code></pre></div><h4 id="简单示例定义一个学生结构体">简单示例：定义一个学生结构体</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Age</span>     <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">Name</span>    <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">stu</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Student</span>{
+		<span style="color:#a6e22e">Age</span>:     <span style="color:#ae81ff">18</span>,
+		<span style="color:#a6e22e">Name</span>:    <span style="color:#e6db74">&#34;name&#34;</span>,
+	}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">stu</span>)
+
+	<span style="color:#75715e">// 在赋值的时候，字段名可以忽略
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">Student</span>{<span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#34;new name&#34;</span>})
+
+	<span style="color:#66d9ef">return</span>
+}
+</code></pre></div><blockquote>
+<p>通常结构体中一个字段占一行，但是类型相同的字段，也可以放在同一行，例如：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span>{
+    <span style="color:#a6e22e">Age</span>           <span style="color:#66d9ef">int</span>
+    <span style="color:#a6e22e">Name</span>, <span style="color:#a6e22e">Address</span> <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><blockquote>
+<p>一个结构体中的字段名是唯一的，例如一下代码，出现了两个 <code>Name</code> 字段，是错误的：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span>{
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><blockquote>
+<p>结构体中的字段如果是小写字母开头，那么其他 package 就无法直接使用该字段，例如：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 在包 pk1 中定义 Student 结构体
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">pk1</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span>{
+    <span style="color:#a6e22e">Age</span>  <span style="color:#66d9ef">int</span>
+    <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 在另外一个包 pk2 中调用 Student 结构体
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">pk2</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#a6e22e">stu</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Student</span>{}
+    <span style="color:#a6e22e">stu</span>.<span style="color:#a6e22e">Age</span> = <span style="color:#ae81ff">18</span>        <span style="color:#75715e">//正确
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">stu</span>.<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;name&#34;</span>  <span style="color:#75715e">// 错误，因为`name` 字段为小写字母开头，不对外暴露
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h4 id="结构体中可以内嵌结构体">结构体中可以内嵌结构体</h4>
+<blockquote>
+<p>但是需要注意的是：如果嵌入的结构体是本身，那么只能用指针。请看以下例子。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Tree</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">value</span>       <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Tree</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">tree</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Tree</span>{
+		<span style="color:#a6e22e">value</span>: <span style="color:#ae81ff">1</span>,
+		<span style="color:#a6e22e">left</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Tree</span>{
+			<span style="color:#a6e22e">value</span>: <span style="color:#ae81ff">1</span>,
+			<span style="color:#a6e22e">left</span>:  <span style="color:#66d9ef">nil</span>,
+			<span style="color:#a6e22e">right</span>: <span style="color:#66d9ef">nil</span>,
+		},
+		<span style="color:#a6e22e">right</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Tree</span>{
+			<span style="color:#a6e22e">value</span>: <span style="color:#ae81ff">2</span>,
+			<span style="color:#a6e22e">left</span>:  <span style="color:#66d9ef">nil</span>,
+			<span style="color:#a6e22e">right</span>: <span style="color:#66d9ef">nil</span>,
+		},
+	}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;&gt;&gt;&gt; %#v\n&#34;</span>, <span style="color:#a6e22e">tree</span>)
+}
+</code></pre></div><h4 id="结构体是可以比较的">结构体是可以比较的</h4>
+<blockquote>
+<p>前提是结构体中的字段类型是可以比较的</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Tree</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">value</span>       <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Tree</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">tree1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Tree</span>{
+		<span style="color:#a6e22e">value</span>: <span style="color:#ae81ff">2</span>,
+	}
+
+	<span style="color:#a6e22e">tree2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Tree</span>{
+		<span style="color:#a6e22e">value</span>: <span style="color:#ae81ff">1</span>,
+	}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;&gt;&gt;&gt; %#v\n&#34;</span>, <span style="color:#a6e22e">tree1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">tree2</span>)
+}
+</code></pre></div><h4 id="结构体内嵌匿名成员">结构体内嵌匿名成员</h4>
+<blockquote>
+<p>声明一个成员对应的数据类型而不指名成员的名字；这类成员就叫匿名成员</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Age</span>  <span style="color:#66d9ef">int</span>
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Person</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">per</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{
+		<span style="color:#a6e22e">Age</span>:  <span style="color:#ae81ff">18</span>,
+		<span style="color:#a6e22e">Name</span>: <span style="color:#e6db74">&#34;name&#34;</span>,
+	}
+
+	<span style="color:#a6e22e">stu</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Student</span>{<span style="color:#a6e22e">Person</span>: <span style="color:#a6e22e">per</span>}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;stu.Age: &#34;</span>, <span style="color:#a6e22e">stu</span>.<span style="color:#a6e22e">Age</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;stu.Name: &#34;</span>, <span style="color:#a6e22e">stu</span>.<span style="color:#a6e22e">Name</span>)
+}
+</code></pre></div></article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#结构体">结构体</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

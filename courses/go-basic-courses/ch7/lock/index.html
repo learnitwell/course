@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="锁 在前面我们已经讲了如何使用 channel 在多个 goroutine 之间进行通信，其实对于并发还有一种较为常用通信方式，那就是共享内存。
+首先我们来看一个例子：
+package main import ( &quot;log&quot; &quot;time&quot; ) var name string func main() { name = &quot;小明&quot; go printName() go printName() time.Sleep(time.Second) name = &quot;小红&quot; go printName() go printName() time.Sleep(time.Second) } func printName() { log.Println(&quot;name is&quot;, name) } 运行程序，可以得到类似输出结果：
+2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:29 name is 小红 2018/03/23 14:53:29 name is 小红 可以看到在两个 goroutine 中我们都可以访问 name 这个变量，当修改它后，在不同的 goroutine 中都可以同时获取到最新的值。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="锁 在前面我们已经讲了如何使用 channel 在多个 goroutine 之间进行通信，其实对于并发还有一种较为常用通信方式，那就是共享内存。
+首先我们来看一个例子：
+package main import ( &quot;log&quot; &quot;time&quot; ) var name string func main() { name = &quot;小明&quot; go printName() go printName() time.Sleep(time.Second) name = &quot;小红&quot; go printName() go printName() time.Sleep(time.Second) } func printName() { log.Println(&quot;name is&quot;, name) } 运行程序，可以得到类似输出结果：
+2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:28 name is 小明 2018/03/23 14:53:29 name is 小红 2018/03/23 14:53:29 name is 小红 可以看到在两个 goroutine 中我们都可以访问 name 这个变量，当修改它后，在不同的 goroutine 中都可以同时获取到最新的值。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch7/lock/" />
+
+<title>Lock | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Lock</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#总结">总结：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h1 id="锁">锁</h1>
+<p>在前面我们已经讲了如何使用 channel 在多个 goroutine 之间进行通信，其实对于并发还有一种较为常用通信方式，那就是共享内存。</p>
+<p>首先我们来看一个例子：</p>
+<pre><code>package main
+
+import (
+	&quot;log&quot;
+	&quot;time&quot;
+)
+
+var name string
+
+func main() {
+	name = &quot;小明&quot;
+
+	go printName()
+	go printName()
+
+	time.Sleep(time.Second)
+
+	name = &quot;小红&quot;
+
+	go printName()
+	go printName()
+
+	time.Sleep(time.Second)
+}
+
+func printName() {
+	log.Println(&quot;name is&quot;, name)
+}
+</code></pre><p>运行程序，可以得到类似输出结果：</p>
+<pre><code>2018/03/23 14:53:28 name is 小明
+2018/03/23 14:53:28 name is 小明
+2018/03/23 14:53:29 name is 小红
+2018/03/23 14:53:29 name is 小红
+</code></pre><p>可以看到在两个 goroutine 中我们都可以访问 <code>name</code> 这个变量，当修改它后，在不同的 goroutine 中都可以同时获取到最新的值。</p>
+<p>这就是一个最简单的通过共享变量（内存）的方式在多个 goroutine 进行通信的方式。</p>
+<p>下面再来看一个例子：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;sync&quot;
+)
+
+func main() {
+	var (
+		wg      sync.WaitGroup
+		numbers []int
+	)
+
+	for i := 0; i &lt; 10; i++ {
+		wg.Add(1)
+		go func(i int) {
+			numbers = append(numbers, i)
+			wg.Done()
+		}(i)
+	}
+
+	wg.Wait()
+
+	fmt.Println(&quot;The numbers is&quot;, numbers)
+}
+</code></pre><p>多次运行代码，可以得到类似输出:</p>
+<pre><code>The numbers is [0 1 5 4 7]
+The numbers is [0 5 7]
+</code></pre><p>可以看到当我们并发对同一个切片进行写操作的时候，会出现数据不一致的问题，这就是一个典型的共享变量的问题。</p>
+<p>针对这个问题我们可以使用 Lock（锁）来修复，从而保证数据的一致性，例如：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;sync&quot;
+)
+
+func main() {
+	var (
+		wg      sync.WaitGroup
+		numbers []int
+
+		mux sync.Mutex
+	)
+
+	for i := 0; i &lt; 10; i++ {
+		wg.Add(1)
+		go func(i int) {
+			mux.Lock()
+			numbers = append(numbers, i)
+			mux.Unlock()
+
+			wg.Done()
+		}(i)
+	}
+
+	wg.Wait()
+
+	fmt.Println(&quot;The numbers is&quot;, numbers)
+}
+</code></pre><p>修改过后，我们再次运行代码，可以看到最后的 numbers 都会包含 0~9 这个10个数字。</p>
+<p><code>sync.Mutex</code> 是互斥锁，只有一个信号标量；在 Go 中还有一种读写锁 <code>sync.RWMutex</code>，对于我们的共享对象，如果可以分离出读和写两个互斥信号的情况，可以考虑使用它来提高读的并发性能。</p>
+<p>例如代码：</p>
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;sync&quot;
+	&quot;sync/atomic&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	var (
+		mux    sync.Mutex
+		state1 = map[string]int{
+			&quot;a&quot;: 65,
+		}
+		muxTotal uint64
+
+		rw     sync.RWMutex
+		state2 = map[string]int{
+			&quot;a&quot;: 65,
+		}
+		rwTotal uint64
+	)
+
+	for i := 0; i &lt; 10; i++ {
+		go func() {
+			for {
+				mux.Lock()
+				_ = state1[&quot;a&quot;]
+				mux.Unlock()
+				atomic.AddUint64(&amp;muxTotal, 1)
+			}
+		}()
+	}
+
+	for i := 0; i &lt; 10; i++ {
+		go func() {
+			for {
+				rw.RLock()
+				_ = state2[&quot;a&quot;]
+				rw.RUnlock()
+				atomic.AddUint64(&amp;rwTotal, 1)
+			}
+		}()
+	}
+
+	time.Sleep(time.Second)
+
+	fmt.Println(&quot;sync.Mutex readOps is&quot;, muxTotal)
+	fmt.Println(&quot;sync.RWMutex readOps is&quot;, rwTotal)
+}
+</code></pre><p>运行代码可以得到如下结果：</p>
+<pre><code>sync.Mutex readOps is 1561870
+sync.RWMutex readOps is 15651069
+</code></pre><p>可以看到使用 <code>sync.RWMutex</code> 的读的并发能力大概是 <code>sync.Mutex</code> 的十倍，从而大大提高了其并发能力。</p>
+<h3 id="总结">总结：</h3>
+<ul>
+<li>我们可以通过共享内存的方式实现多个 goroutine 中的通信。</li>
+<li>多个 goroutine 对于共享的内存进行写操作的时候，可以使用 <code>Lock</code> 来避免数据不一致的情况。</li>
+<li>对于可以分离为读写操作的共享数据可以考虑使用 <code>sync.RWMutex</code> 来提高其读的并发能力。</li>
+</ul>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#总结">总结：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

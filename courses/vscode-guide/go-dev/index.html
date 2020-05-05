@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="安装扩展 使用快捷键 Shift&#43;Command&#43;X 打开扩展安装页，安装扩展 Go。
+自定义扩展配置 使用快捷键 Command&#43;, 打开自定义配置页，编辑 settings.json，定义与 Go 扩展相关的配置项。
+{ &#34;editor.formatOnSave&#34;: true, &#34;files.autoSave&#34;: &#34;onFocusChange&#34;, &#34;go.buildOnSave&#34;: &#34;workspace&#34;, &#34;go.lintOnSave&#34;: &#34;package&#34;, &#34;go.vetOnSave&#34;: &#34;package&#34;, &#34;go.buildFlags&#34;: [], &#34;go.lintFlags&#34;: [], &#34;go.vetFlags&#34;: [], &#34;go.coverOnSave&#34;: false, &#34;go.autocompleteUnimportedPackages&#34;: true, &#34;go.useLanguageServer&#34;: true, &#34;go.inferGopath&#34;: true, &#34;go.docsTool&#34;: &#34;godoc&#34;, &#34;go.gocodePackageLookupMode&#34;: &#34;go&#34;, &#34;go.gotoSymbol.includeImports&#34;: true, &#34;go.useCodeSnippetsOnFunctionSuggest&#34;: true, &#34;go.useCodeSnippetsOnFunctionSuggestWithoutType&#34;: true, &#34;go.formatTool&#34;: &#34;goreturns&#34;, &#34;go.gocodeAutoBuild&#34;: false, &#34;go.liveErrors&#34;: { &#34;enabled&#34;: true, &#34;delay&#34;: 0 }, &#34;go.gopath&#34;: &#34;/data/go&#34;, &#34;go.goroot&#34;: &#34;/usr/local/Cellar/go/1.12.7/libexec&#34; } 安装依赖 第一次编辑完 Go 代码保存的时候，VS Code 会提示需要安装依赖，点击 Install All 进行安装。如果遇到墙的问题，则需要手动安装依赖，需要先下载依赖源码，再进行安装。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="打造 Go 开发环境" />
+<meta property="og:description" content="安装扩展 使用快捷键 Shift&#43;Command&#43;X 打开扩展安装页，安装扩展 Go。
+自定义扩展配置 使用快捷键 Command&#43;, 打开自定义配置页，编辑 settings.json，定义与 Go 扩展相关的配置项。
+{ &#34;editor.formatOnSave&#34;: true, &#34;files.autoSave&#34;: &#34;onFocusChange&#34;, &#34;go.buildOnSave&#34;: &#34;workspace&#34;, &#34;go.lintOnSave&#34;: &#34;package&#34;, &#34;go.vetOnSave&#34;: &#34;package&#34;, &#34;go.buildFlags&#34;: [], &#34;go.lintFlags&#34;: [], &#34;go.vetFlags&#34;: [], &#34;go.coverOnSave&#34;: false, &#34;go.autocompleteUnimportedPackages&#34;: true, &#34;go.useLanguageServer&#34;: true, &#34;go.inferGopath&#34;: true, &#34;go.docsTool&#34;: &#34;godoc&#34;, &#34;go.gocodePackageLookupMode&#34;: &#34;go&#34;, &#34;go.gotoSymbol.includeImports&#34;: true, &#34;go.useCodeSnippetsOnFunctionSuggest&#34;: true, &#34;go.useCodeSnippetsOnFunctionSuggestWithoutType&#34;: true, &#34;go.formatTool&#34;: &#34;goreturns&#34;, &#34;go.gocodeAutoBuild&#34;: false, &#34;go.liveErrors&#34;: { &#34;enabled&#34;: true, &#34;delay&#34;: 0 }, &#34;go.gopath&#34;: &#34;/data/go&#34;, &#34;go.goroot&#34;: &#34;/usr/local/Cellar/go/1.12.7/libexec&#34; } 安装依赖 第一次编辑完 Go 代码保存的时候，VS Code 会提示需要安装依赖，点击 Install All 进行安装。如果遇到墙的问题，则需要手动安装依赖，需要先下载依赖源码，再进行安装。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/vscode-guide/go-dev/" />
+
+<title>打造 Go 开发环境 | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/vscode-guide/introduction">基本介绍</a></p>
+</li>
+<li>
+<p><a href="/courses/vscode-guide/shortcuts">快捷键大全</a></p>
+</li>
+<li>
+<p><a href="/courses/vscode-guide/settings">配置参数详解</a></p>
+</li>
+<li>
+<p><a href="/courses/vscode-guide/extensions">常用扩展推荐</a></p>
+</li>
+<li>
+<p><a href="/courses/vscode-guide/php-dev">打造 PHP 开发环境</a></p>
+</li>
+<li>
+<p><a href="/courses/vscode-guide/go-dev">打造 Go 开发环境</a></p>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>打造 Go 开发环境</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装扩展">安装扩展</a></li>
+        <li><a href="#自定义扩展配置">自定义扩展配置</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+        <li><a href="#使用扩展命令">使用扩展命令</a></li>
+        <li><a href="#断点调试">断点调试</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    「VS Code」快速上手指南
+</div>
+
+      
+<article class="markdown"><h3 id="安装扩展">安装扩展</h3>
+<p>使用快捷键 Shift+Command+X 打开扩展安装页，安装扩展 Go。</p>
+<p><img src="http://blogcdn.idoustudio.com/vscode-go.png" alt="vscode-go" /></p>
+<h3 id="自定义扩展配置">自定义扩展配置</h3>
+<p>使用快捷键 <code>Command+,</code> 打开自定义配置页，编辑 settings.json，定义与 Go 扩展相关的配置项。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;editor.formatOnSave&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;files.autoSave&#34;</span>: <span style="color:#e6db74">&#34;onFocusChange&#34;</span>,
+  <span style="color:#f92672">&#34;go.buildOnSave&#34;</span>: <span style="color:#e6db74">&#34;workspace&#34;</span>,
+  <span style="color:#f92672">&#34;go.lintOnSave&#34;</span>: <span style="color:#e6db74">&#34;package&#34;</span>,
+  <span style="color:#f92672">&#34;go.vetOnSave&#34;</span>: <span style="color:#e6db74">&#34;package&#34;</span>,
+  <span style="color:#f92672">&#34;go.buildFlags&#34;</span>: [],
+  <span style="color:#f92672">&#34;go.lintFlags&#34;</span>: [],
+  <span style="color:#f92672">&#34;go.vetFlags&#34;</span>: [],
+  <span style="color:#f92672">&#34;go.coverOnSave&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;go.autocompleteUnimportedPackages&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.useLanguageServer&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.inferGopath&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.docsTool&#34;</span>: <span style="color:#e6db74">&#34;godoc&#34;</span>,
+  <span style="color:#f92672">&#34;go.gocodePackageLookupMode&#34;</span>: <span style="color:#e6db74">&#34;go&#34;</span>,
+  <span style="color:#f92672">&#34;go.gotoSymbol.includeImports&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.useCodeSnippetsOnFunctionSuggest&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.useCodeSnippetsOnFunctionSuggestWithoutType&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;go.formatTool&#34;</span>: <span style="color:#e6db74">&#34;goreturns&#34;</span>,
+  <span style="color:#f92672">&#34;go.gocodeAutoBuild&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;go.liveErrors&#34;</span>: {
+    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+    <span style="color:#f92672">&#34;delay&#34;</span>: <span style="color:#ae81ff">0</span>
+  },
+  <span style="color:#f92672">&#34;go.gopath&#34;</span>: <span style="color:#e6db74">&#34;/data/go&#34;</span>,
+  <span style="color:#f92672">&#34;go.goroot&#34;</span>: <span style="color:#e6db74">&#34;/usr/local/Cellar/go/1.12.7/libexec&#34;</span>
+}
+</code></pre></div><h3 id="安装依赖">安装依赖</h3>
+<p><img src="http://blogcdn.idoustudio.com/vscode-go-install.png" alt="" /></p>
+<p>第一次编辑完 Go 代码保存的时候，VS Code 会提示需要安装依赖，点击 <code>Install All</code> 进行安装。如果遇到墙的问题，则需要手动安装依赖，需要先下载依赖源码，再进行安装。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get -u -v github.com/ramya-rao-a/go-outline
+go get -u -v github.com/acroca/go-symbols
+go get -u -v github.com/mdempsky/gocode
+go get -u -v github.com/rogpeppe/godef
+go get -u -v golang.org/x/tools/cmd/godoc
+go get -u -v github.com/zmb3/gogetdoc
+go get -u -v golang.org/x/lint/golint
+go get -u -v github.com/fatih/gomodifytags
+go get -u -v golang.org/x/tools/cmd/gorename
+go get -u -v sourcegraph.com/sqs/goreturns
+go get -u -v golang.org/x/tools/cmd/goimports
+go get -u -v github.com/cweill/gotests/...
+go get -u -v golang.org/x/tools/cmd/guru
+go get -u -v github.com/josharian/impl
+go get -u -v github.com/haya14busa/goplay/cmd/goplay
+go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
+go get -u -v github.com/davidrjenni/reftools/cmd/fillstruct
+go get -u -v github.com/alecthomas/gometalinter
+gometalinter --install
+</code></pre></div><p>部分依赖源码地址：</p>
+<ul>
+<li><a href="https://github.com/golang/tools">golang.org/x/tools</a></li>
+<li><a href="https://github.com/golang/lint">golang.org/x/lint</a></li>
+<li><a href="https://github.com/golang/xerrors">golang.org/x/xerrors</a></li>
+</ul>
+<h3 id="使用扩展命令">使用扩展命令</h3>
+<p>安装完 Go 扩展后，有一些在扩展中自定义的命令可以使用。</p>
+<p>快捷键 Shift+Command+P 打开命令面板，输入 <code>Go:</code> 查看所有可以使用的扩展命令。</p>
+<p>几个常用的命令：</p>
+<ul>
+<li><code>Go: Current GOPATH</code> 查看当前 GOPATH 的路径</li>
+<li><code>Go: Show All Commands</code> 查看所有可用的扩展命令</li>
+<li><code>Go: Install/Update Tools</code> 安装/更新依赖的工具</li>
+<li><code>Go: Browse Packages</code> 浏览包</li>
+</ul>
+<h3 id="断点调试">断点调试</h3>
+<p>在项目根目录下创建 .vscode/lauch.json 并配置调试参数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.2.0&#34;</span>,
+  <span style="color:#f92672">&#34;configurations&#34;</span>: [
+    {
+      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;gotest&#34;</span>,
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;go&#34;</span>,
+      <span style="color:#f92672">&#34;request&#34;</span>: <span style="color:#e6db74">&#34;launch&#34;</span>,
+      <span style="color:#f92672">&#34;mode&#34;</span>: <span style="color:#e6db74">&#34;debug&#34;</span>,
+      <span style="color:#f92672">&#34;remotePath&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#f92672">&#34;port&#34;</span>: <span style="color:#ae81ff">10550</span>,
+      <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>,
+      <span style="color:#f92672">&#34;program&#34;</span>: <span style="color:#e6db74">&#34;/data/go/src/test/main.go&#34;</span>,
+      <span style="color:#f92672">&#34;env&#34;</span>: {
+        <span style="color:#f92672">&#34;GOPATH&#34;</span>: <span style="color:#e6db74">&#34;/data/go&#34;</span>
+      },
+      <span style="color:#f92672">&#34;args&#34;</span>: [],
+      <span style="color:#f92672">&#34;showLog&#34;</span>: <span style="color:#66d9ef">true</span>
+    }
+  ]
+}
+</code></pre></div><p>在项目文件中打断点，按 F5 开始进行断点调试。</p>
+<p>如果遇到报错：</p>
+<blockquote>
+<p>could not launch process: executables built by Go 1.11 or later need Delve built by Go 1.11 or later</p>
+</blockquote>
+<p>升级安装 <a href="https://github.com/go-delve/delve">delve</a></p>
+<pre><code>go get -u github.com/go-delve/delve/cmd/dlv
+</code></pre><p><img src="http://blogcdn.idoustudio.com/vscode-go-dev.png" alt="" /></p>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装扩展">安装扩展</a></li>
+        <li><a href="#自定义扩展配置">自定义扩展配置</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+        <li><a href="#使用扩展命令">使用扩展命令</a></li>
+        <li><a href="#断点调试">断点调试</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

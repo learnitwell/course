@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="接到一个用户的需求：想更改一下 weiphp 通用表单插件，当用户在微信端填写表单内容并提交表单后，系统自动把该用户填写的内容发送给指定的用户。
+评估了一下这个需求，发现做起来其实还是很容易的，主要就是需要用到微信的高级接口：客服接口。具体思路是：创建自定义通用表单时填写一个需要把表单内容发往的微信用户 uid（该 uid 可通过在微信中回复“uid”查看）——&gt;当用户提交表单成功之后调用微信的高级接口把表单的内容发给指定用户。
+下面我们开始更改 weiphp 自带的通用表单（Forms）插件：
+1、在智能聊天（Chat）的微信交互模型（/Addons/Chat/Model/WeixinAddonModel.class.php）中实现当用户发送“uid”时返回用户 uid 的功能。
+2、在 weiphp 后台模型管理中找到 forms 模型，新增一个字段 uid。
+3、在微信中查看 uid。
+4、在通用表单插件中新建一个表单，并把表单提交后需要通知的用户 uid 填上去。
+5、新建几个字段。
+6、在 Application/Common/Common/function.php 中新增几个方法，用于使用微信客服接口（客服接口只有认证了的服务号才能使用）。
+7、在通用表单的控制器中改写表单提交的方法，当表单提交成功后调用客服接口函数给后台指定的用户发消息。
+8、我们现在在微信发送“报名”来触发第 4 步中创建的表单。
+9、点击进入填写表单。
+10、填写好表单之后点“确定”提交表单，被指定的用户在微信中就会立刻接到通知。
+好啦，本次任务圆满完成，客户承诺给的 500 元报酬妥妥的就到手了。
+weiphp 的通用表单还是很强大的，可以实现很多功能，而微信高级接口的接入自然让此功能如虎添翼。客服接口属于微信认证服务号独有的接口，有了此接口可以实现很多高级的功能，比如订餐系统中用户提交订单后店主接到订单通知、微信运营者与微信用户实时互动之类的。更多实用、好玩的功能还要靠大家一起去探索，本文只起到抛钻引玉的作用~">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="微信高级客服接口在weiphp插件中的使用" />
+<meta property="og:description" content="接到一个用户的需求：想更改一下 weiphp 通用表单插件，当用户在微信端填写表单内容并提交表单后，系统自动把该用户填写的内容发送给指定的用户。
+评估了一下这个需求，发现做起来其实还是很容易的，主要就是需要用到微信的高级接口：客服接口。具体思路是：创建自定义通用表单时填写一个需要把表单内容发往的微信用户 uid（该 uid 可通过在微信中回复“uid”查看）——&gt;当用户提交表单成功之后调用微信的高级接口把表单的内容发给指定用户。
+下面我们开始更改 weiphp 自带的通用表单（Forms）插件：
+1、在智能聊天（Chat）的微信交互模型（/Addons/Chat/Model/WeixinAddonModel.class.php）中实现当用户发送“uid”时返回用户 uid 的功能。
+2、在 weiphp 后台模型管理中找到 forms 模型，新增一个字段 uid。
+3、在微信中查看 uid。
+4、在通用表单插件中新建一个表单，并把表单提交后需要通知的用户 uid 填上去。
+5、新建几个字段。
+6、在 Application/Common/Common/function.php 中新增几个方法，用于使用微信客服接口（客服接口只有认证了的服务号才能使用）。
+7、在通用表单的控制器中改写表单提交的方法，当表单提交成功后调用客服接口函数给后台指定的用户发消息。
+8、我们现在在微信发送“报名”来触发第 4 步中创建的表单。
+9、点击进入填写表单。
+10、填写好表单之后点“确定”提交表单，被指定的用户在微信中就会立刻接到通知。
+好啦，本次任务圆满完成，客户承诺给的 500 元报酬妥妥的就到手了。
+weiphp 的通用表单还是很强大的，可以实现很多功能，而微信高级接口的接入自然让此功能如虎添翼。客服接口属于微信认证服务号独有的接口，有了此接口可以实现很多高级的功能，比如订餐系统中用户提交订单后店主接到订单通知、微信运营者与微信用户实时互动之类的。更多实用、好玩的功能还要靠大家一起去探索，本文只起到抛钻引玉的作用~" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/weiphp-dev/vol6/" />
+<meta property="article:published_time" content="2015-04-20T15:25:55+00:00" />
+<meta property="article:modified_time" content="2015-04-20T15:25:55+00:00" />
+<title>微信高级客服接口在weiphp插件中的使用 | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li><a href="/courses/weiphp-dev/vol1.md">第一个自定义 weiphp 插件：MyHello</a></li>
+<li><a href="/courses/weiphp-dev/vol2.md">成语接龙插件：Idioms</a></li>
+<li><a href="/courses/weiphp-dev/vol3.md">留言板插件：Liuyanban</a></li>
+<li><a href="/courses/weiphp-dev/vol4.md">签到插件：QianDao</a></li>
+<li><a href="/courses/weiphp-dev/vol5.md">网页采集技术在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol6.md">微信高级客服接口在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol7.md">模拟请求技术在 weiphp 插件中的应用</a></li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>微信高级客服接口在weiphp插件中的使用</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents"></nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    分分钟上手「WeiPHP」插件开发
+</div>
+
+      
+<article class="markdown"><p>接到一个用户的需求：想更改一下 weiphp 通用表单插件，当用户在微信端填写表单内容并提交表单后，系统自动把该用户填写的内容发送给指定的用户。</p>
+<p>评估了一下这个需求，发现做起来其实还是很容易的，主要就是需要用到微信的高级接口：客服接口。具体思路是：创建自定义通用表单时填写一个需要把表单内容发往的微信用户 uid（该 uid 可通过在微信中回复“uid”查看）——&gt;当用户提交表单成功之后调用微信的高级接口把表单的内容发给指定用户。</p>
+<p>下面我们开始更改 weiphp 自带的通用表单（Forms）插件：</p>
+<p>1、在智能聊天（Chat）的微信交互模型（/Addons/Chat/Model/WeixinAddonModel.class.php）中实现当用户发送“uid”时返回用户 uid 的功能。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/12.png" alt="" /></p>
+<p>2、在 weiphp 后台模型管理中找到 forms 模型，新增一个字段 uid。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/22.png" alt="" /></p>
+<p>3、在微信中查看 uid。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/32.png" alt="" /></p>
+<p>4、在通用表单插件中新建一个表单，并把表单提交后需要通知的用户 uid 填上去。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/41.png" alt="" /></p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/52.png" alt="" /></p>
+<p>5、新建几个字段。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/62.png" alt="" /></p>
+<p>6、在 Application/Common/Common/function.php 中新增几个方法，用于使用微信客服接口（客服接口只有认证了的服务号才能使用）。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/71.png" alt="" /></p>
+<p>7、在通用表单的控制器中改写表单提交的方法，当表单提交成功后调用客服接口函数给后台指定的用户发消息。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/8.png" alt="" /></p>
+<p>8、我们现在在微信发送“报名”来触发第 4 步中创建的表单。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/9.png" alt="" /></p>
+<p>9、点击进入填写表单。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/10.png" alt="" /></p>
+<p>10、填写好表单之后点“确定”提交表单，被指定的用户在微信中就会立刻接到通知。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/04/111.png" alt="" /></p>
+<p>好啦，本次任务圆满完成，客户承诺给的 500 元报酬妥妥的就到手了。</p>
+<p>weiphp 的通用表单还是很强大的，可以实现很多功能，而微信高级接口的接入自然让此功能如虎添翼。客服接口属于微信认证服务号独有的接口，有了此接口可以实现很多高级的功能，比如订餐系统中用户提交订单后店主接到订单通知、微信运营者与微信用户实时互动之类的。更多实用、好玩的功能还要靠大家一起去探索，本文只起到抛钻引玉的作用~</p>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents"></nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

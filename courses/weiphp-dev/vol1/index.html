@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="我们都知道，学习任何一门编程语言，一般来说第一个范例程序就是输出“Hello World”。从今天开始我们来学习 weiphp 插件开发，也从一个 HelloWorld 级别的插件开始讲起，因为安装好了的 weiphp 框架，默认安装了 weiphp 官方开发的 HelloWorld 插件，所以这里为了防止跟官方的插件冲突，我们开发的第一个自定义 weiphp 插件取名为 MyHello，并通过这个简单的插件来讲解 weiphp 插件开发的整个流程。整个【分分钟上手 weiphp 插件开发】系列教程都是直接从创建一个新的插件开始讲起的，逐步延生到插件编码、微信响应、数据模型设计等内容，并假定阅读本教程的用户都具有一定的 php 编程基础且已成功搭建好了 weiphp 开发框架，关于如何在服务器上部署 weiphp、weiphp 框架代码结构、weiphp 数据模型等知识请自行参考其他的教程。本系列教程基于的 weiphp 框架版本为 2.0.1202，依赖的服务器为阿里云。
+下面开始讲解第一个自定义 weiphp 插件：MyHello 的开发流程。
+1、插件创建。在 weiphp 管理后台依次点击“插件管理-&gt;创建插件”进入插件创建页面，填写插件的标识名、插件名、版本、作者、描述等信息，勾选“安装后是否启用”、“是否需要配置”两项，点击“确定”完成插件的创建。
+2、插件安装。在插件管理列表中点击“安装”完成插件的安装。
+3、插件管理。返回到 weiphp 管理前台，可以看到 MyHello 插件已经成功安装。
+4、改写配置文件。在 weiphp 的 addons 目录下默认生成的 MyHello 插件文件夹下面改写默认生成的 config.php，添加如下图所示配置项。
+5、查看配置项。可以看到配置文件已经正常响应。
+6、微信响应。为 WeixinAddonModel.class.php 中编写微信响应代码。
+7、编辑配置项。在后台配置页面填写配置信息，上传封面图片，并点“确定”提交配置项。
+8、微信测试。在微信中回复“我的插件”或者“MyHello”时，根据配置项中选择的回复类型是“文本消息”还是“单图文消息”来进行回复。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="第一个自定义weiphp插件：MyHello" />
+<meta property="og:description" content="我们都知道，学习任何一门编程语言，一般来说第一个范例程序就是输出“Hello World”。从今天开始我们来学习 weiphp 插件开发，也从一个 HelloWorld 级别的插件开始讲起，因为安装好了的 weiphp 框架，默认安装了 weiphp 官方开发的 HelloWorld 插件，所以这里为了防止跟官方的插件冲突，我们开发的第一个自定义 weiphp 插件取名为 MyHello，并通过这个简单的插件来讲解 weiphp 插件开发的整个流程。整个【分分钟上手 weiphp 插件开发】系列教程都是直接从创建一个新的插件开始讲起的，逐步延生到插件编码、微信响应、数据模型设计等内容，并假定阅读本教程的用户都具有一定的 php 编程基础且已成功搭建好了 weiphp 开发框架，关于如何在服务器上部署 weiphp、weiphp 框架代码结构、weiphp 数据模型等知识请自行参考其他的教程。本系列教程基于的 weiphp 框架版本为 2.0.1202，依赖的服务器为阿里云。
+下面开始讲解第一个自定义 weiphp 插件：MyHello 的开发流程。
+1、插件创建。在 weiphp 管理后台依次点击“插件管理-&gt;创建插件”进入插件创建页面，填写插件的标识名、插件名、版本、作者、描述等信息，勾选“安装后是否启用”、“是否需要配置”两项，点击“确定”完成插件的创建。
+2、插件安装。在插件管理列表中点击“安装”完成插件的安装。
+3、插件管理。返回到 weiphp 管理前台，可以看到 MyHello 插件已经成功安装。
+4、改写配置文件。在 weiphp 的 addons 目录下默认生成的 MyHello 插件文件夹下面改写默认生成的 config.php，添加如下图所示配置项。
+5、查看配置项。可以看到配置文件已经正常响应。
+6、微信响应。为 WeixinAddonModel.class.php 中编写微信响应代码。
+7、编辑配置项。在后台配置页面填写配置信息，上传封面图片，并点“确定”提交配置项。
+8、微信测试。在微信中回复“我的插件”或者“MyHello”时，根据配置项中选择的回复类型是“文本消息”还是“单图文消息”来进行回复。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/weiphp-dev/vol1/" />
+<meta property="article:published_time" content="2015-01-05T15:02:54+00:00" />
+<meta property="article:modified_time" content="2015-01-05T15:02:54+00:00" />
+<title>第一个自定义weiphp插件：MyHello | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li><a href="/courses/weiphp-dev/vol1.md">第一个自定义 weiphp 插件：MyHello</a></li>
+<li><a href="/courses/weiphp-dev/vol2.md">成语接龙插件：Idioms</a></li>
+<li><a href="/courses/weiphp-dev/vol3.md">留言板插件：Liuyanban</a></li>
+<li><a href="/courses/weiphp-dev/vol4.md">签到插件：QianDao</a></li>
+<li><a href="/courses/weiphp-dev/vol5.md">网页采集技术在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol6.md">微信高级客服接口在 weiphp 插件中的使用</a></li>
+<li><a href="/courses/weiphp-dev/vol7.md">模拟请求技术在 weiphp 插件中的应用</a></li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>第一个自定义weiphp插件：MyHello</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents"></nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    分分钟上手「WeiPHP」插件开发
+</div>
+
+      
+<article class="markdown"><p>我们都知道，学习任何一门编程语言，一般来说第一个范例程序就是输出“Hello World”。从今天开始我们来学习 weiphp 插件开发，也从一个 HelloWorld 级别的插件开始讲起，因为安装好了的 weiphp 框架，默认安装了 weiphp 官方开发的 HelloWorld 插件，所以这里为了防止跟官方的插件冲突，我们开发的第一个自定义 weiphp 插件取名为 MyHello，并通过这个简单的插件来讲解 weiphp 插件开发的整个流程。整个【分分钟上手 weiphp 插件开发】系列教程都是直接从创建一个新的插件开始讲起的，逐步延生到插件编码、微信响应、数据模型设计等内容，并假定阅读本教程的用户都具有一定的 php 编程基础且已成功搭建好了 weiphp 开发框架，关于如何在服务器上部署 weiphp、weiphp 框架代码结构、weiphp 数据模型等知识请自行参考其他的教程。本系列教程基于的 weiphp 框架版本为 2.0.1202，依赖的服务器为阿里云。</p>
+<p>下面开始讲解第一个自定义 weiphp 插件：MyHello 的开发流程。</p>
+<p>1、插件创建。在 weiphp 管理后台依次点击“插件管理-&gt;创建插件”进入插件创建页面，填写插件的标识名、插件名、版本、作者、描述等信息，勾选“安装后是否启用”、“是否需要配置”两项，点击“确定”完成插件的创建。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/11.png" alt="" />
+<img src="http://blogcdn.idoustudio.com/2015/01/21.png" alt="" /></p>
+<p>2、插件安装。在插件管理列表中点击“安装”完成插件的安装。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/32.png" alt="" /></p>
+<p>3、插件管理。返回到 weiphp 管理前台，可以看到 MyHello 插件已经成功安装。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/41.png" alt="" /></p>
+<p>4、改写配置文件。在 weiphp 的 addons 目录下默认生成的 MyHello 插件文件夹下面改写默认生成的 config.php，添加如下图所示配置项。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/51.png" alt="" /></p>
+<p>5、查看配置项。可以看到配置文件已经正常响应。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/61.png" alt="" /></p>
+<p>6、微信响应。为 WeixinAddonModel.class.php 中编写微信响应代码。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/71.png" alt="" /></p>
+<p>7、编辑配置项。在后台配置页面填写配置信息，上传封面图片，并点“确定”提交配置项。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/8.png" alt="" /></p>
+<p>8、微信测试。在微信中回复“我的插件”或者“MyHello”时，根据配置项中选择的回复类型是“文本消息”还是“单图文消息”来进行回复。</p>
+<p><img src="http://blogcdn.idoustudio.com/2015/01/9.png" alt="" /></p>
+</article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents"></nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

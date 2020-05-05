@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="自定义类型 前面我们已经学习了不少基础和高级数据类型，在 Go 语言里面，我们还可以通过自定义类型来表示一些特殊的数据结构和业务逻辑。
+使用关键字 type 来声明：
+type NAME TYPE 声明语法  单次声明  type City string  批量声明  type ( B0 = int8 B1 = int16 B2 = int32 B3 = int64 ) type ( A0 int8 A1 int16 A2 int32 A3 int64 ) 简单示例 package main import &quot;fmt&quot; type City string func main() { city := City(&quot;上海&quot;) fmt.Println(city) } 基本操作 package main import &quot;fmt&quot; type City string type Age int func main() { city := City(&quot;北京&quot;) fmt.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="自定义类型 前面我们已经学习了不少基础和高级数据类型，在 Go 语言里面，我们还可以通过自定义类型来表示一些特殊的数据结构和业务逻辑。
+使用关键字 type 来声明：
+type NAME TYPE 声明语法  单次声明  type City string  批量声明  type ( B0 = int8 B1 = int16 B2 = int32 B3 = int64 ) type ( A0 int8 A1 int16 A2 int32 A3 int64 ) 简单示例 package main import &quot;fmt&quot; type City string func main() { city := City(&quot;上海&quot;) fmt.Println(city) } 基本操作 package main import &quot;fmt&quot; type City string type Age int func main() { city := City(&quot;北京&quot;) fmt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/courses/go-basic-courses/ch5/custom/" />
+
+<title>Custom | IT小课</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6df681b0bb21155cba49f6078e3559216772d8e03e780d240c73ea21817ed5e5.css" integrity="sha256-bfaBsLshFVy6SfYHjjVZIWdy2OA&#43;eA0kDHPqIYF&#43;1eU="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  <style>
+    .book-brand img {
+        width: 150px;
+        height: 60px;
+        margin-top: -20px;
+    }
+</style>
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+<nav>
+  <h2 class="book-brand">
+  <a href="/"><img src="http://blogcdn.idoustudio.com/learnitwell.png" alt="Logo" />
+  </a>
+</h2>
+  
+
+
+  
+  
+
+
+
+
+  
+  
+
+
+
+
+
+<ul>
+<li>
+<p><a href="/courses/go-basic-courses/ch1/readme">Go 安装和配置</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch2/readme">Go 开发利器：VSCode</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch3/readme">基础知识</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch3/identifiers">命名规范</a></li>
+<li><a href="/courses/go-basic-courses/ch3/var">变量</a></li>
+<li><a href="/courses/go-basic-courses/ch3/const">常量</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch4/readme">基础数据类型</a></p>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch5/readme">高级类型</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch5/array">数组</a></li>
+<li><a href="/courses/go-basic-courses/ch5/slice">切片</a></li>
+<li><a href="/courses/go-basic-courses/ch5/map">Map</a></li>
+<li><a href="/courses/go-basic-courses/ch5/custom">自定义类型</a></li>
+<li><a href="/courses/go-basic-courses/ch5/struct">结构体</a></li>
+<li><a href="/courses/go-basic-courses/ch5/function">函数</a></li>
+<li><a href="/courses/go-basic-courses/ch5/method">方法</a></li>
+<li><a href="/courses/go-basic-courses/ch5/interface">接口</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch6/readme">流程控制</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch6/control">分支循环</a></li>
+<li><a href="/courses/go-basic-courses/ch6/error">异常处理</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch7/readme">并发</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch7/goroutine">Goroutine</a></li>
+<li><a href="/courses/go-basic-courses/ch7//courses/go-basic-courses/channel">/courses/go-basic-courses/Channel</a></li>
+<li><a href="/courses/go-basic-courses/ch7/lock">锁的使用</a></li>
+<li><a href="/courses/go-basic-courses/ch7/atomic">原子操作</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch8/readme">文件操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch8/readfile">读文件</a></li>
+<li><a href="/courses/go-basic-courses/ch8/writefile">写文件</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch9/readme">序列化和反序列化</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch9/xml">xml</a></li>
+<li><a href="/courses/go-basic-courses/ch9/json">json</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch10/readme">网络</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch10/socket">socket</a></li>
+<li><a href="/courses/go-basic-courses/ch10/http">http</a></li>
+<li><a href="/courses/go-basic-courses/ch10/websocket">websocket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch11/readme">数据库操作</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch11/mysql">MySQL</a></li>
+<li><a href="/courses/go-basic-courses/ch11/mongodb">MongoDB</a></li>
+</ul>
+</li>
+<li>
+<p><a href="/courses/go-basic-courses/ch12/readme">项目工程</a></p>
+<ul>
+<li><a href="/courses/go-basic-courses/ch12/package">包和管理</a></li>
+<li><a href="/courses/go-basic-courses/ch12/test">单元测试</a></li>
+<li><a href="/courses/go-basic-courses/ch12/tool">其他工具</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+  
+  
+</nav>
+
+
+
+
+<script>
+  {
+    {
+      . | safeJS
+    }
+  }
+</script>
+
+
+      
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+<div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Custom</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+
+<input type="checkbox" class="hidden" id="toc-control" />
+<aside class="hidden clearfix">
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#声明语法">声明语法</a></li>
+        <li><a href="#简单示例">简单示例</a></li>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#函数参数">函数参数</a></li>
+        <li><a href="#不同自定义类型间的操作">不同自定义类型间的操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</aside>
+
+
+        
+      </header>
+
+      
+<style>
+    .header {
+        height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 30px;
+    }
+
+    .book-toc nav {
+        margin-top: 60px;
+    }
+</style>
+<div class="header">
+    Go 零基础编程入门教程
+</div>
+
+      
+<article class="markdown"><h1 id="自定义类型">自定义类型</h1>
+<p>前面我们已经学习了不少基础和高级数据类型，在 Go 语言里面，我们还可以通过自定义类型来表示一些特殊的数据结构和业务逻辑。</p>
+<p>使用关键字 <code>type</code> 来声明：</p>
+<pre><code>type NAME TYPE
+</code></pre><h3 id="声明语法">声明语法</h3>
+<ul>
+<li>单次声明</li>
+</ul>
+<pre><code>type City string
+</code></pre><ul>
+<li>批量声明</li>
+</ul>
+<pre><code>type (
+    B0 = int8
+    B1 = int16
+    B2 = int32
+    B3 = int64
+)
+
+type (
+    A0 int8
+    A1 int16
+    A2 int32
+    A3 int64
+)
+</code></pre><h3 id="简单示例">简单示例</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+type City string
+
+func main() {
+    city := City(&quot;上海&quot;)
+    fmt.Println(city)
+}
+
+</code></pre><h3 id="基本操作">基本操作</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+type City string
+type Age int
+
+func main() {
+    city := City(&quot;北京&quot;)
+    fmt.Println(&quot;I live in&quot;, city + &quot; 上海&quot;)  //  字符串拼接
+    fmt.Println(len(city))  // len 方法
+
+    middle := Age(12)
+
+    if middle &gt;= 12 {
+        fmt.Println(&quot;Middle is bigger than 12&quot;)
+    }
+}
+</code></pre><p>总结： 自定义类型的原始类型的所有操作同样适用。</p>
+<h3 id="函数参数">函数参数</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+type Age int
+
+func main() {
+    middle := Age(12)
+    printAge(middle)
+}
+
+func printAge(age int) {
+    fmt.Println(&quot;Age is&quot;, age)
+}
+</code></pre><p>当我们运行代码的时候会出现  <code>./main.go:11:10: cannot use middle (type Age) as type int in argument to printAge</code> 的错误。</p>
+<p>因为 <code>printAge</code> 方法期望的是 int 类型，但是我们传入的参数是 <code>Age</code>，他们虽然具有相同的值，但为不同的类型。</p>
+<p>我们可以采用显式的类型转换（ <code>printAge(int(primary))</code>）来修复。</p>
+<h3 id="不同自定义类型间的操作">不同自定义类型间的操作</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+type Age int
+type Height int
+
+func main() {
+    age := Age(12)
+    height := Height(175)
+
+    fmt.Println(height / age)
+}
+</code></pre><p>当我们运行代码会出现 <code>./main.go:12:21: invalid operation: height / age (mismatched types Height and Age)</code> 错误，修复方法使用显式转换:</p>
+<pre><code>fmt.Println(int(height) / int(age))
+</code></pre></article>
+
+      
+      
+<script src="https://utteranc.es/client.js" repo="learnitwell/course" issue-term="pathname" theme="github-light"
+    crossorigin="anonymous" async>
+</script>
+
+
+      <footer class="book-footer">
+        
+<div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+        
+        
+      </footer>
+
+      
+
+<div class="book-comments">
+
+</div>
+
+
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#声明语法">声明语法</a></li>
+        <li><a href="#简单示例">简单示例</a></li>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#函数参数">函数参数</a></li>
+        <li><a href="#不同自定义类型间的操作">不同自定义类型间的操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+      
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
